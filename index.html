@@ -89,6 +89,23 @@ h1 {
   box-shadow: 0 0 10px rgba(255, 192, 203, 0.4);
 }
 
+.lyrics {
+  margin-top: 2rem;
+  font-size: 1rem;
+  max-width: 600px;
+}
+
+.lyrics span {
+  display: block;
+  opacity: 0;
+  animation: fadeLine 1s ease-in-out forwards;
+}
+
+@keyframes fadeLine {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .hidden {
   display: none;
 }
@@ -121,31 +138,6 @@ h1 {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Flying hearts */
-.heart {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center;
-  background-size: contain;
-  animation: floatHeart 8s linear infinite;
-  z-index: 0;
-}
-
-@keyframes floatHeart {
-  0% {
-    transform: translateY(100vh) scale(0.5);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-10vh) scale(1);
-    opacity: 0;
-  }
-}
-
   </style>
 </head>
 <body>
@@ -153,18 +145,8 @@ h1 {
   <video autoplay muted loop>
     <source src="video.M4V" type="video/mp4" />
     Your browser does not support the video tag.
-  </video>  <!-- Flying hearts -->  <script>
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (5 + Math.random() * 5) + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 10000);
-    }
-    setInterval(createHeart, 800);
-  </script>  <!-- Overlay -->  <div class="overlay">
-    <img src="PICTURE.JPEG" alt="My Love" class="photo" />
+  </video>  <!-- Overlay -->  <div class="overlay">
+    <img src="IMG_3614.jpg" alt="My Love" class="photo" />
     <h1>Counting down to you, my pink heart 💗</h1>
     <div class="countdown" id="timer">Loading...</div>
     <div class="message">
@@ -178,6 +160,7 @@ h1 {
         Your browser does not support the audio element.
       </audio>
     </div>
+    <div class="lyrics" id="lyrics"></div>
     <div id="final" class="hidden">
       <div class="final-message">She's back!!! I’m so happy you're here 💘</div>
       <button class="replay-button" onclick="location.reload()">Replay Countdown</button>
@@ -206,7 +189,7 @@ h1 {
       const s = Math.floor((gap % (1000 * 60)) / 1000);
 
       if (gap > 0) {
-        countdownEl.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
+        countdownEl.innerHTML = `<strong>${d}d ${h}h ${m}m ${s}s</strong>`;
       } else {
         countdownEl.innerHTML = "";
         finalEl.classList.remove("hidden");
@@ -217,5 +200,21 @@ h1 {
 
     const intervalId = setInterval(updateCountdown, 1000);
     updateCountdown();
+
+    // Animated lyrics
+    const lyricsText = [
+      "Hours and hours of thinking of you...",
+      "Every heartbeat feels like a step closer",
+      "The stars whisper your name at night",
+      "And I feel your love across the distance 💖"
+    ];
+
+    const lyricsContainer = document.getElementById("lyrics");
+    lyricsText.forEach((line, i) => {
+      const span = document.createElement("span");
+      span.style.animationDelay = `${6 + i * 2}s`;
+      span.textContent = line;
+      lyricsContainer.appendChild(span);
+    });
   </script></body>
 </html>
