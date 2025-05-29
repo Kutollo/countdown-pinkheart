@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Countdown to You 💖</title>
   <style>
     * {
@@ -10,28 +10,33 @@
       padding: 0;
       box-sizing: border-box;
     }
+
     body, html {
       height: 100%;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       color: white;
       text-align: center;
       overflow: hidden;
-      background: #000;
-      position: relative;
+      cursor: url('https://cur.cursors-4u.net/nature/nat-11/nat1016.cur'), auto;
     }
+
     video {
       position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       object-fit: cover;
       z-index: -2;
     }
+
     .overlay {
       height: 100%;
       width: 100%;
       background: rgba(0, 0, 0, 0.55);
       position: absolute;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       z-index: 1;
       display: flex;
       flex-direction: column;
@@ -39,24 +44,32 @@
       align-items: center;
       padding: 2rem;
     }
+
     h1 {
       font-size: 2.7rem;
       margin-bottom: 1rem;
-      z-index: 2;
+      animation: fadeIn 2s ease-in-out;
+      text-shadow: 0 0 10px #fff;
     }
-    .countdown {
+
+    .countdown, .apart-counter {
       font-size: 2rem;
       font-weight: bold;
-      margin-bottom: 1.5rem;
-      z-index: 2;
+      margin-bottom: 1rem;
+      animation: fadeIn 3s ease-in-out;
     }
+
     .message {
       font-size: 1.2rem;
       margin-bottom: 1.5rem;
       max-width: 600px;
-      z-index: 2;
+      white-space: pre-wrap;
+      overflow: hidden;
+      border-right: .15em solid pink;
+      animation: typing 4s steps(60, end), blink-caret 1s step-end infinite;
     }
-    .slideshow {
+
+    .photo {
       width: 220px;
       height: 220px;
       border-radius: 50%;
@@ -65,155 +78,173 @@
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
       margin-bottom: 2rem;
       animation: pulse 4s infinite ease-in-out;
-      z-index: 2;
     }
+
+    .audio-controls {
+      margin-top: 1rem;
+      animation: fadeIn 5s ease-in-out;
+    }
+
+    .audio-controls audio {
+      width: 250px;
+      outline: none;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(255, 192, 203, 0.4);
+    }
+
+    .final-message {
+      font-size: 1.4rem;
+      margin-top: 2rem;
+      color: #ffe4ec;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .replay-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #ff69b4;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .replay-button:hover {
+      background-color: #ff1493;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
     }
-    .now-playing {
-      margin: 10px 0;
-      font-size: 1rem;
-      color: #ffc0cb;
-      animation: fadeIn 3s ease-in-out;
-      z-index: 2;
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
     }
-    .custom-player {
-      background: #fff0f5;
-      border-radius: 20px;
-      padding: 10px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 0 10px #ffb6c1;
-      z-index: 2;
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: pink }
     }
-    .custom-player img {
-      width: 40px;
-      height: 40px;
-      animation: rotate 10s linear infinite;
+
+    /* Heart Bubbles */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: float 8s infinite ease-in;
+    }
+
+    .heart::before, .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
       border-radius: 50%;
     }
-    .custom-player audio {
-      outline: none;
-    }
-    @keyframes rotate {
-      from { transform: rotate(0); }
-      to { transform: rotate(360deg); }
-    }
-    .note {
-      position: absolute;
-      font-size: 1.5rem;
-      animation: floatNote 3s ease-in infinite;
-      color: #ff69b4;
-      z-index: 2;
-    }
-    @keyframes floatNote {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-100px); opacity: 0; }
-    }
-    .lyric {
-      position: absolute;
-      font-size: 1.2rem;
-      color: #fff0f5;
-      text-shadow: 1px 1px 3px #000;
-      opacity: 0;
-      animation: fadeInOut 40s ease-in-out infinite;
-      z-index: 2;
-    }
-    @keyframes fadeInOut {
-      0%, 10%, 90%, 100% { opacity: 0; }
-      25%, 75% { opacity: 1; }
-    }
-    /* New travel animation styles */
-    .travel-container {
-      position: relative;
-      width: 320px;
-      height: 70px;
-      margin-bottom: 1rem;
-      z-index: 2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      color: #ffb6c1;
-      font-weight: 600;
-      font-size: 1.1rem;
-      user-select: none;
-    }
-    .city {
-      flex-shrink: 0;
-    }
-    .plane-path {
-      position: relative;
-      flex-grow: 1;
-      height: 5px;
-      background: #ff69b4;
-      border-radius: 2.5px;
-      overflow: visible;
-    }
-    .plane {
-      position: absolute;
-      top: -12px;
+
+    .heart::before {
+      top: -10px;
       left: 0;
-      width: 24px;
-      height: 24px;
-      background: url('data:image/svg+xml;utf8,<svg fill="%23ff69b4" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>') no-repeat center center;
-      background-size: contain;
-      animation: flyRight 6s linear infinite;
     }
-    @keyframes flyRight {
-      0% { left: 0; transform: rotate(0deg); }
-      50% { transform: rotate(10deg); }
-      100% { left: calc(100% - 24px); transform: rotate(0deg); }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        bottom: 0;
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        bottom: 100%;
+        left: calc(100% * var(--random-x));
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      .countdown, .apart-counter { font-size: 1.4rem; }
+      .message { font-size: 1rem; }
     }
   </style>
 </head>
 <body>
   <video autoplay muted loop>
     <source src="video.M4V" type="video/mp4" />
+    Your browser does not support the video tag.
   </video>
 
   <div class="overlay">
-    <img src="PICTURE.JPEG" alt="My Love" class="slideshow" id="slideshow-img" />
-    
+    <img src="PICTURE.JPEG" alt="My Love" class="photo" />
     <h1>Counting down to you, my pink heart 💗</h1>
-
-    <div class="travel-container" aria-label="Travel from Cape Town to Johannesburg">
-      <div class="city">Cape Town</div>
-      <div class="plane-path">
-        <div class="plane" aria-hidden="true"></div>
-      </div>
-      <div class="city">Johannesburg</div>
-    </div>
-
     <div class="countdown" id="timer">Loading...</div>
-    <div class="message">
-      Every moment without you feels longer than the last. I can't wait to hold you again.
+    <div class="apart-counter" id="apart">We’ve been apart for ...</div>
+    <div class="message" id="typedMessage">
+      I’ve missed your voice, your smile, your everything.
+      Every second brings me closer to seeing you again.
+      I’ll be waiting with all my heart 💞
     </div>
-    <div class="now-playing">🎶 Now Playing: “Hrs and Hrs” – For My Pink Heart 💖</div>
-    <div class="custom-player">
-      <img src="PICTURE.JPEG" alt="cover" />
+    <div class="audio-controls">
       <audio controls autoplay loop>
         <source src="hrs-and-hrs.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
       </audio>
+    </div>
+    <div id="final" class="hidden">
+      <div class="final-message">She's back!!! I’m so happy you're here 💘</div>
+      <button class="replay-button" onclick="location.reload()">Replay Countdown</button>
     </div>
   </div>
 
-  <div class="note" style="left:10%; top:90%;">🎵</div>
-  <div class="note" style="left:30%; top:95%;">💖</div>
-  <div class="note" style="left:60%; top:92%;">🎶</div>
-  <div class="note" style="left:80%; top:94%;">💘</div>
+  <!-- Heart bubbles -->
+  <script>
+    for (let i = 0; i < 25; i++) {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (4 + Math.random() * 6) + "s";
+      heart.style.setProperty("--random-x", Math.random());
+      document.body.appendChild(heart);
+    }
+  </script>
 
-  <div class="lyric" style="top: 10%; left: 5%; animation-delay: 0s;">You're the reason I believe in love again</div>
-  <div class="lyric" style="top: 20%; left: 70%; animation-delay: 6s;">When I met you, I knew this was it</div>
-  <div class="lyric" style="top: 35%; left: 40%; animation-delay: 12s;">You're not just my love, you're my peace</div>
-  <div class="lyric" style="top: 50%; left: 20%; animation-delay: 18s;">Layin' on your chest for hours</div>
-  <div class="lyric" style="top: 65%; left: 75%; animation-delay: 24s;">You give me a superpower</div>
-  <div class="lyric" style="top: 80%; left: 10%; animation-delay: 30s;">I could do this for hours</div>
-
+  <!-- Confetti + Countdown logic -->
+  <canvas id="confetti-canvas" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
     const countdownEl = document.getElementById("timer");
+    const finalEl = document.getElementById("final");
+    const confettiCanvas = document.getElementById("confetti-canvas");
+    const apartEl = document.getElementById("apart");
+
+    function launchConfetti() {
+      confettiCanvas.classList.remove("hidden");
+      const confettiInstance = confetti.create(confettiCanvas, { resize: true });
+      confettiInstance({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
+    }
 
     function updateCountdown() {
       const target = new Date("June 4, 2025 13:00:00").getTime();
@@ -226,4 +257,21 @@
       const s = Math.floor((gap % (1000 * 60)) / 1000);
 
       if (gap > 0) {
-        countdownEl.innerHTML = `${d}d ${h}h ${m}m ${s
+        countdownEl.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
+        const apartSince = new Date("May 4, 2025").getTime();
+        const daysApart = Math.floor((now - apartSince) / (1000 * 60 * 60 * 24));
+        apartEl.innerHTML = `We've been apart for ${daysApart} days 💔`;
+      } else {
+        countdownEl.innerHTML = "";
+        apartEl.innerHTML = "";
+        finalEl.classList.remove("hidden");
+        launchConfetti();
+        clearInterval(intervalId);
+      }
+    }
+
+    const intervalId = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+          </html>
