@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown to My Pink Heart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffe6f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      color: #333;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    #countdown {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .heart {
+      color: #ff4d88;
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    .photo {
+      width: 200px;
+      height: auto;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+    .message {
+      font-size: 1.25rem;
+      margin-top: 15px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="heart">
+    ❤️
+  </div>
+  <h1>Counting down to my pink heart — I can't wait to see you!</h1>
+  <img class="photo" src="https://i.imgur.com/YOUR_IMAGE_LINK.jpg" alt="A cute photo">
+  <div id="countdown">Loading...</div>
+  <div class="message">I've been counting down every second for this moment. I'm so excited to hold you again!</div>
+
+  <script>
+    const targetDate = new Date("2025-06-04T13:00:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      const timeDiff = targetDate - now;
+
+      if (timeDiff <= 0) {
+        document.getElementById("countdown").textContent = "She's back! ❤️";
+        return;
+      }
+
+      const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDiff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
+      const seconds = Math.floor((timeDiff / 1000) % 60);
+
+      document.getElementById("countdown").textContent =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
