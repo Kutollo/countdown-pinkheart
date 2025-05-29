@@ -1,87 +1,101 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Countdown to My Pink Heart</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Countdown to You 💖</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #ffe6f0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('PICTURE.JPEG') no-repeat center center/cover;
+      height: 100vh;
+      color: white;
+      text-align: center;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      height: 100vh;
-      margin: 0;
-      color: #333;
-      text-align: center;
+      padding: 2rem;
+      backdrop-filter: blur(3px);
     }
+
     h1 {
       font-size: 2.5rem;
-      margin-bottom: 10px;
+      margin-bottom: 1rem;
+      animation: fadeIn 2s ease-in-out;
     }
-    #countdown {
+
+    .countdown {
       font-size: 2rem;
       font-weight: bold;
-      margin-top: 20px;
+      margin-bottom: 2rem;
+      animation: fadeIn 3s ease-in-out;
     }
-    .heart {
-      color: #ff4d88;
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-    .photo {
-      width: 200px;
-      height: auto;
-      border-radius: 10px;
-      margin: 20px 0;
-    }
+
     .message {
-      font-size: 1.25rem;
-      margin-top: 15px;
-      font-style: italic;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      animation: fadeIn 4s ease-in-out;
+    }
+
+    audio {
+      margin-top: 1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .countdown {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
-  <audio autoplay loop>
-  <source src="hrs-and-hrs.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-
-  <div class="heart">
-    ❤️
+  <h1>Counting down to you, my pink heart 💗</h1>
+  <div class="countdown" id="timer">Loading...</div>
+  <div class="message">
+    I can't wait to hold you again. Every second closer feels like magic.<br>
+    See you on June 4th, around 1PM. I miss you more than words 💞
   </div>
-  <h1>Counting down to my pink heart — I can't wait to see you!</h1>
-  <img class="photo" src="https://i.imgur.com/YOUR_IMAGE_LINK.jpg" alt="A cute photo">
-  <div id="countdown">Loading...</div>
-  <div class="message">I've been counting down every second for this moment. I'm so excited to hold you again!</div>
+
+  <audio id="music" controls>
+    <source src="hrs-and-hrs.mp3" type="audio/mpeg" />
+    Your browser doesn't support audio.
+  </audio>
 
   <script>
-    const targetDate = new Date("2025-06-04T13:00:00");
+    const countdown = () => {
+      const targetDate = new Date("June 4, 2025 13:00:00").getTime();
+      const now = new Date().getTime();
+      const distance = targetDate - now;
 
-    function updateCountdown() {
-      const now = new Date();
-      const timeDiff = targetDate - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      if (timeDiff <= 0) {
-        document.getElementById("countdown").textContent = "She's back! ❤️";
-        return;
-      }
-
-      const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((timeDiff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
-      const seconds = Math.floor((timeDiff / 1000) % 60);
-
-      document.getElementById("countdown").textContent =
+      document.getElementById("timer").innerHTML =
         `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
 
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+      if (distance < 0) {
+        document.getElementById("timer").innerHTML = "She's back!!! 💕";
+      }
+    };
+
+    setInterval(countdown, 1000);
+    countdown();
   </script>
 </body>
 </html>
