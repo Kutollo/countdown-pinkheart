@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Countdown to You 💖</title>
   <style>
     * {
@@ -38,11 +38,11 @@ video {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 h1 {
-  font-size: 2.2rem;
+  font-size: 2.3rem;
   margin-bottom: 1rem;
   animation: fadeIn 2s ease-in-out;
 }
@@ -50,45 +50,53 @@ h1 {
 .countdown {
   font-size: 1.8rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   animation: fadeIn 3s ease-in-out;
 }
 
 .message {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-bottom: 1.2rem;
   animation: fadeIn 4s ease-in-out;
-  max-width: 90%;
+  max-width: 90vw;
 }
 
 .photo {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   border: 4px solid white;
   object-fit: cover;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
   margin-bottom: 1.5rem;
-  animation: heartbeat 2s infinite ease-in-out;
+  animation: heartbeat 3s infinite ease-in-out;
 }
 
 @keyframes heartbeat {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  50% { transform: scale(1.08); }
+}
+
+.audio-controls {
+  margin-top: 1rem;
+  animation: fadeIn 5s ease-in-out;
 }
 
 .audio-controls audio {
-  width: 240px;
-  border-radius: 20px;
+  width: 220px;
   outline: none;
-  border: 2px solid #ff69b4;
-  background: rgba(255, 192, 203, 0.2);
-  box-shadow: 0 0 12px rgba(255, 105, 180, 0.6);
+  border-radius: 20px;
+  border: 2px solid #ffc0cb;
+  box-shadow: 0 0 15px rgba(255, 192, 203, 0.6);
+}
+
+.hidden {
+  display: none;
 }
 
 .final-message {
   font-size: 1.4rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
   color: #ffe4ec;
   animation: fadeIn 2s ease-in-out;
 }
@@ -102,6 +110,7 @@ h1 {
   background-color: #ff69b4;
   color: white;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
 .replay-button:hover {
@@ -120,40 +129,39 @@ h1 {
     <source src="video.M4V" type="video/mp4" />
     Your browser does not support the video tag.
   </video>  <div class="overlay">
-    <img src="IMG_3614.jpg" alt="My Love" class="photo" />
+    <img src="PICTURE.JPEG" alt="My Love" class="photo" />
     <h1>Counting down to you, my pink heart 💗</h1>
     <div class="countdown" id="timer">Loading...</div>
-    <div class="message" id="dynamicMsg">
+    <div class="message" id="message">
       I’ve missed your voice, your smile, your everything.<br>
       Every second brings me closer to seeing you again.<br>
       I’ll be waiting with all my heart 💞
     </div>
     <div class="audio-controls">
-      <audio controls autoplay loop>
+      <audio id="bg-audio" muted autoplay loop>
         <source src="hrs-and-hrs.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
     </div>
     <div id="final" class="hidden">
-      <div class="final-message">You’re here now, and I’m wrapped in the warmth of your love. ❤️</div>
+      <div class="final-message">You’re here now, and I’m wrapped in the warmth of your love 💘</div>
       <button class="replay-button" onclick="location.reload()">Replay Countdown</button>
     </div>
   </div><canvas id="confetti-canvas" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;"></canvas>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>  <script>
     const countdownEl = document.getElementById("timer");
+    const messageEl = document.getElementById("message");
     const finalEl = document.getElementById("final");
-    const msgEl = document.getElementById("dynamicMsg");
     const confettiCanvas = document.getElementById("confetti-canvas");
 
-    const messages = [
-      { time: "07:00", text: "Good morning, my pink heart — the day is finally here. I’ve been waiting for this moment forever." },
-      { time: "08:00", text: "Wishing you a safe journey, my heart beats with yours across every mile." },
-      { time: "09:00", text: "As you check in, know that I’m already counting down to hold you close." },
-      { time: "10:55", text: "The plane takes flight, but my thoughts are already wrapped around you." },
-      { time: "12:55", text: "You’re almost home, and my heart can’t wait to welcome you." },
-      { time: "14:00", text: "You’re here now, and I’m wrapped in the warmth of your love." }
-    ];
+    document.addEventListener("click", function () {
+      const audio = document.getElementById("bg-audio");
+      if (audio.paused) {
+        audio.muted = false;
+        audio.play().catch(e => console.log("Autoplay failed:", e));
+      }
+    }, { once: true });
 
     function launchConfetti() {
       confettiCanvas.classList.remove("hidden");
@@ -162,9 +170,9 @@ h1 {
     }
 
     function updateCountdown() {
-      const now = new Date();
       const target = new Date("June 4, 2025 14:00:00").getTime();
-      const gap = target - now.getTime();
+      const now = new Date().getTime();
+      const gap = target - now;
 
       const d = Math.floor(gap / (1000 * 60 * 60 * 24));
       const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -172,20 +180,41 @@ h1 {
       const s = Math.floor((gap % (1000 * 60)) / 1000);
 
       if (gap > 0) {
-        countdownEl.innerHTML = `<b>${d}d ${h}h ${m}m ${s}s</b>`;
+        countdownEl.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
       } else {
         countdownEl.innerHTML = "";
-        msgEl.classList.add("hidden");
         finalEl.classList.remove("hidden");
         launchConfetti();
         clearInterval(intervalId);
       }
-
-      const nowStr = now.toTimeString().slice(0,5);
-      messages.forEach(msg => {
-        if (nowStr === msg.time) msgEl.innerHTML = msg.text;
-      });
     }
+
+    function getDynamicMessage() {
+      const now = new Date();
+      const targetDay = new Date("June 4, 2025");
+
+      if (
+        now.getDate() === targetDay.getDate() &&
+        now.getMonth() === targetDay.getMonth() &&
+        now.getFullYear() === targetDay.getFullYear()
+      ) {
+        const hour = now.getHours();
+        const minutes = now.getMinutes();
+
+        if (hour === 7) return "Good morning, my love!";
+        if (hour === 8) return "Wishing you a safe journey, my heart beats with yours across every mile.";
+        if (hour === 9) return "As you check in, know that I’m already counting down to hold you close.";
+        if (hour === 10 && minutes >= 55) return "The plane takes flight, but my thoughts are already wrapped around you.";
+        if (hour === 12 && minutes >= 55) return "You’re almost home, and my heart can’t wait to welcome you.";
+        if (hour >= 14) return "You’re here now, and I’m wrapped in the warmth of your love.";
+      }
+
+      return "I’ve missed your voice, your smile, your everything.<br>Every second brings me closer to seeing you again.<br>I’ll be waiting with all my heart 💞";
+    }
+
+    setInterval(() => {
+      messageEl.innerHTML = getDynamicMessage();
+    }, 60000);
 
     const intervalId = setInterval(updateCountdown, 1000);
     updateCountdown();
