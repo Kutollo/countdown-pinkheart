@@ -1,7 +1,8 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Countdown to You 💖</title>
   <style>
     * {
@@ -11,17 +12,17 @@
     }
     body, html {
       height: 100%;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: white;
       text-align: center;
       overflow: hidden;
+      background: #000;
+      position: relative;
     }
     video {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
       object-fit: cover;
       z-index: -2;
     }
@@ -30,8 +31,7 @@
       width: 100%;
       background: rgba(0, 0, 0, 0.55);
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       z-index: 1;
       display: flex;
       flex-direction: column;
@@ -115,23 +115,78 @@
     .lyric {
       position: absolute;
       font-size: 1.2rem;
-      color: #ffddee;
+      color: #fff0f5;
+      text-shadow: 1px 1px 3px #000;
       opacity: 0;
-      animation: fadeInOut 10s ease-in-out infinite;
+      animation: fadeInOut 40s ease-in-out infinite;
       z-index: 2;
     }
     @keyframes fadeInOut {
-      0%, 100% { opacity: 0; }
-      20%, 80% { opacity: 1; }
+      0%, 10%, 90%, 100% { opacity: 0; }
+      25%, 75% { opacity: 1; }
+    }
+    /* New travel animation styles */
+    .travel-container {
+      position: relative;
+      width: 320px;
+      height: 70px;
+      margin-bottom: 1rem;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      color: #ffb6c1;
+      font-weight: 600;
+      font-size: 1.1rem;
+      user-select: none;
+    }
+    .city {
+      flex-shrink: 0;
+    }
+    .plane-path {
+      position: relative;
+      flex-grow: 1;
+      height: 5px;
+      background: #ff69b4;
+      border-radius: 2.5px;
+      overflow: visible;
+    }
+    .plane {
+      position: absolute;
+      top: -12px;
+      left: 0;
+      width: 24px;
+      height: 24px;
+      background: url('data:image/svg+xml;utf8,<svg fill="%23ff69b4" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>') no-repeat center center;
+      background-size: contain;
+      animation: flyRight 6s linear infinite;
+    }
+    @keyframes flyRight {
+      0% { left: 0; transform: rotate(0deg); }
+      50% { transform: rotate(10deg); }
+      100% { left: calc(100% - 24px); transform: rotate(0deg); }
     }
   </style>
 </head>
 <body>
   <video autoplay muted loop>
     <source src="video.M4V" type="video/mp4" />
-  </video>  <div class="overlay">
+  </video>
+
+  <div class="overlay">
     <img src="PICTURE.JPEG" alt="My Love" class="slideshow" id="slideshow-img" />
+    
     <h1>Counting down to you, my pink heart 💗</h1>
+
+    <div class="travel-container" aria-label="Travel from Cape Town to Johannesburg">
+      <div class="city">Cape Town</div>
+      <div class="plane-path">
+        <div class="plane" aria-hidden="true"></div>
+      </div>
+      <div class="city">Johannesburg</div>
+    </div>
+
     <div class="countdown" id="timer">Loading...</div>
     <div class="message">
       Every moment without you feels longer than the last. I can't wait to hold you again.
@@ -143,15 +198,21 @@
         <source src="hrs-and-hrs.mp3" type="audio/mpeg" />
       </audio>
     </div>
-  </div>  <div class="note" style="left:10%; top:90%;">🎵</div>
+  </div>
+
+  <div class="note" style="left:10%; top:90%;">🎵</div>
   <div class="note" style="left:30%; top:95%;">💖</div>
   <div class="note" style="left:60%; top:92%;">🎶</div>
-  <div class="note" style="left:80%; top:94%;">💘</div>  <div class="lyric" style="top: 10%; left: 5%; animation-delay: 0s;">You're the reason I believe in love again</div>
-  <div class="lyric" style="top: 20%; left: 70%; animation-delay: 2s;">When I met you, I knew this was it</div>
-  <div class="lyric" style="top: 35%; left: 40%; animation-delay: 4s;">You're not just my love, you're my peace</div>
-  <div class="lyric" style="top: 50%; left: 20%; animation-delay: 6s;">Layin' on your chest for hours</div>
-  <div class="lyric" style="top: 65%; left: 75%; animation-delay: 8s;">You give me a superpower</div>
-  <div class="lyric" style="top: 80%; left: 10%; animation-delay: 10s;">I could do this for hours</div>  <script>
+  <div class="note" style="left:80%; top:94%;">💘</div>
+
+  <div class="lyric" style="top: 10%; left: 5%; animation-delay: 0s;">You're the reason I believe in love again</div>
+  <div class="lyric" style="top: 20%; left: 70%; animation-delay: 6s;">When I met you, I knew this was it</div>
+  <div class="lyric" style="top: 35%; left: 40%; animation-delay: 12s;">You're not just my love, you're my peace</div>
+  <div class="lyric" style="top: 50%; left: 20%; animation-delay: 18s;">Layin' on your chest for hours</div>
+  <div class="lyric" style="top: 65%; left: 75%; animation-delay: 24s;">You give me a superpower</div>
+  <div class="lyric" style="top: 80%; left: 10%; animation-delay: 30s;">I could do this for hours</div>
+
+  <script>
     const countdownEl = document.getElementById("timer");
 
     function updateCountdown() {
@@ -165,21 +226,4 @@
       const s = Math.floor((gap % (1000 * 60)) / 1000);
 
       if (gap > 0) {
-        countdownEl.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
-      } else {
-        countdownEl.innerHTML = "She's back!!! 💕";
-      }
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    const slideshowImg = document.getElementById("slideshow-img");
-    const images = ["PICTURE.JPEG", "IMG_3614"];
-    let index = 0;
-    setInterval(() => {
-      index = (index + 1) % images.length;
-      slideshowImg.src = images[index];
-    }, 4000);
-  </script></body>
-</html>
+        countdownEl.innerHTML = `${d}d ${h}h ${m}m ${s
