@@ -1,136 +1,138 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html><html lang="en">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Countdown to You 💖</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body, html {
-  height: 100%;
-  font-family: 'Segoe UI', sans-serif;
-  color: white;
-  text-align: center;
-  overflow: hidden;
-}
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 
-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -2;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
 
-.overlay {
-  height: 100%;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.55);
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 1rem;
-}
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+    }
 
-h1 {
-  font-size: 2rem;
-  margin-top: 1rem;
-  animation: fadeIn 2s ease-in-out;
-}
+    .overlay {
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1rem;
+    }
 
-.photo {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  border: 4px solid white;
-  object-fit: cover;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-  margin: 1rem 0;
-  animation: heartbeat 3s infinite ease-in-out;
-}
+    h1 {
+      font-size: 2rem;
+      margin-top: 1rem;
+      animation: fadeIn 2s ease-in-out;
+    }
 
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.06); }
-}
+    .photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 4px solid white;
+      object-fit: cover;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      margin: 1rem 0;
+      animation: heartbeat 3s infinite ease-in-out;
+    }
 
-.countup, .countdown {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin: 0.5rem 0;
-  animation: fadeIn 2s ease-in-out;
-}
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
 
-.message {
-  font-size: 1rem;
-  margin: 1rem;
-  animation: fadeIn 3s ease-in-out;
-  max-width: 600px;
-}
+    .countup, .countdown {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 0.5rem 0;
+      animation: fadeIn 2s ease-in-out;
+    }
 
-.lyrics {
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.1rem;
-  color: #ffccff;
-  max-width: 90%;
-  margin: 1rem auto 3rem;
-  opacity: 0;
-  animation: fadeLyrics 20s infinite;
-  animation-delay: 10s;
-}
+    .message {
+      font-size: 1rem;
+      margin: 1rem;
+      animation: fadeIn 3s ease-in-out;
+      max-width: 600px;
+    }
 
-@keyframes fadeLyrics {
-  0%, 100% { opacity: 0; }
-  10%, 90% { opacity: 1; }
-}
+    .lyrics {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.1rem;
+      color: #ffccff;
+      max-width: 90%;
+      margin: 1rem auto 3rem;
+      opacity: 0;
+      animation: fadeLyrics 20s infinite;
+      animation-delay: 10s;
+    }
 
-.audio-button {
-  position: fixed;
-  bottom: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: hotpink;
-  border: none;
-  border-radius: 25px;
-  color: white;
-  font-size: 0.95rem;
-  padding: 12px 20px;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
-  z-index: 5;
-  animation: pulse 3s infinite;
-}
+    @keyframes fadeLyrics {
+      0%, 100% { opacity: 0; }
+      10%, 90% { opacity: 1; }
+    }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
+    .audio-button {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: hotpink;
+      border: none;
+      border-radius: 25px;
+      color: white;
+      font-size: 0.95rem;
+      padding: 12px 20px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+      z-index: 5;
+      animation: pulse 3s infinite;
+    }
 
-.hidden {
-  display: none;
-}
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
 
-.final-message {
-  font-size: 1.4rem;
-  margin-top: 1.5rem;
-  color: #ffe4ec;
-  animation: fadeIn 2s ease-in-out;
-}
+    .hidden {
+      display: none;
+    }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    .final-message {
+      font-size: 1.4rem;
+      margin-top: 1.5rem;
+      color: #ffe4ec;
+      animation: fadeIn 2s ease-in-out;
+    }
 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
@@ -151,9 +153,12 @@ h1 {
   </div>
   <audio id="song" loop>
     <source src="hrs-and-hrs.mp3" type="audio/mpeg" />
-  </audio><canvas id="confetti-canvas" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;"></canvas>
+  </audio>
 
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>  <script>
+  <canvas id="confetti-canvas" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
     const playBtn = document.getElementById("playBtn");
     const song = document.getElementById("song");
 
@@ -164,5 +169,6 @@ h1 {
         playBtn.innerText = "Tap me again, baby 😘";
       });
     });
-  </script></body>
+  </script>
+</body>
 </html>
