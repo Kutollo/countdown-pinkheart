@@ -42,18 +42,21 @@
     h1 {
       font-size: 2.7rem;
       margin-bottom: 1rem;
+      z-index: 2;
     }
     .countdown {
       font-size: 2rem;
       font-weight: bold;
       margin-bottom: 1.5rem;
+      z-index: 2;
     }
     .message {
       font-size: 1.2rem;
       margin-bottom: 1.5rem;
       max-width: 600px;
+      z-index: 2;
     }
-    .photo {
+    .slideshow {
       width: 220px;
       height: 220px;
       border-radius: 50%;
@@ -62,6 +65,7 @@
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
       margin-bottom: 2rem;
       animation: pulse 4s infinite ease-in-out;
+      z-index: 2;
     }
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
@@ -72,6 +76,7 @@
       font-size: 1rem;
       color: #ffc0cb;
       animation: fadeIn 3s ease-in-out;
+      z-index: 2;
     }
     .custom-player {
       background: #fff0f5;
@@ -81,6 +86,7 @@
       align-items: center;
       gap: 10px;
       box-shadow: 0 0 10px #ffb6c1;
+      z-index: 2;
     }
     .custom-player img {
       width: 40px;
@@ -100,6 +106,7 @@
       font-size: 1.5rem;
       animation: floatNote 3s ease-in infinite;
       color: #ff69b4;
+      z-index: 2;
     }
     @keyframes floatNote {
       0% { transform: translateY(0); opacity: 1; }
@@ -110,7 +117,8 @@
       font-size: 1.2rem;
       color: #ffddee;
       opacity: 0;
-      animation: fadeInOut 8s ease-in-out infinite;
+      animation: fadeInOut 10s ease-in-out infinite;
+      z-index: 2;
     }
     @keyframes fadeInOut {
       0%, 100% { opacity: 0; }
@@ -122,11 +130,11 @@
   <video autoplay muted loop>
     <source src="video.M4V" type="video/mp4" />
   </video>  <div class="overlay">
-    <img src="PICTURE.JPEG" alt="My Love" class="photo" />
+    <img src="PICTURE.JPEG" alt="My Love" class="slideshow" id="slideshow-img" />
     <h1>Counting down to you, my pink heart 💗</h1>
     <div class="countdown" id="timer">Loading...</div>
     <div class="message">
-      Every second brings me closer to seeing you again. I’ve missed you deeply.
+      Every moment without you feels longer than the last. I can't wait to hold you again.
     </div>
     <div class="now-playing">🎶 Now Playing: “Hrs and Hrs” – For My Pink Heart 💖</div>
     <div class="custom-player">
@@ -138,12 +146,12 @@
   </div>  <div class="note" style="left:10%; top:90%;">🎵</div>
   <div class="note" style="left:30%; top:95%;">💖</div>
   <div class="note" style="left:60%; top:92%;">🎶</div>
-  <div class="note" style="left:80%; top:94%;">💘</div>  <div class="lyric" style="top: 10%; left: 5%; animation-delay: 0s;">I could do this for hours</div>
-  <div class="lyric" style="top: 20%; left: 70%; animation-delay: 2s;">Yours, mine, ours</div>
-  <div class="lyric" style="top: 35%; left: 40%; animation-delay: 4s;">I wanna give you your flowers</div>
-  <div class="lyric" style="top: 50%; left: 20%; animation-delay: 6s;">Together the world could be ours</div>
-  <div class="lyric" style="top: 65%; left: 75%; animation-delay: 8s;">Layin' on your chest for hours</div>
-  <div class="lyric" style="top: 80%; left: 10%; animation-delay: 10s;">I pray for it on my knees</div>  <script>
+  <div class="note" style="left:80%; top:94%;">💘</div>  <div class="lyric" style="top: 10%; left: 5%; animation-delay: 0s;">You're the reason I believe in love again</div>
+  <div class="lyric" style="top: 20%; left: 70%; animation-delay: 2s;">When I met you, I knew this was it</div>
+  <div class="lyric" style="top: 35%; left: 40%; animation-delay: 4s;">You're not just my love, you're my peace</div>
+  <div class="lyric" style="top: 50%; left: 20%; animation-delay: 6s;">Layin' on your chest for hours</div>
+  <div class="lyric" style="top: 65%; left: 75%; animation-delay: 8s;">You give me a superpower</div>
+  <div class="lyric" style="top: 80%; left: 10%; animation-delay: 10s;">I could do this for hours</div>  <script>
     const countdownEl = document.getElementById("timer");
 
     function updateCountdown() {
@@ -165,5 +173,13 @@
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
+
+    const slideshowImg = document.getElementById("slideshow-img");
+    const images = ["PICTURE.JPEG", "IMG_3614"];
+    let index = 0;
+    setInterval(() => {
+      index = (index + 1) % images.length;
+      slideshowImg.src = images[index];
+    }, 4000);
   </script></body>
 </html>
