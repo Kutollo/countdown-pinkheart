@@ -39,70 +39,79 @@
       z-index: 1;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
-      padding: 2rem;
+      padding: 1rem;
     }
 
     h1 {
-      font-size: 2.7rem;
-      margin-bottom: 1rem;
+      font-size: 2rem;
+      margin-top: 1rem;
       animation: fadeIn 2s ease-in-out;
     }
 
-    .countdown {
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 1.5rem;
-      animation: fadeIn 3s ease-in-out;
-    }
-
-    .message {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-      animation: fadeIn 4s ease-in-out;
-      max-width: 600px;
-    }
-
     .photo {
-      width: 220px;
-      height: 220px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
       border: 4px solid white;
       object-fit: cover;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-      margin-bottom: 2rem;
-      animation: pulse 4s infinite ease-in-out;
+      margin-top: 1rem;
+      animation: heartbeat 3s infinite ease-in-out;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+
+    .countup, .countdown {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 0.5rem 0;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .message {
+      font-size: 1rem;
+      margin: 1rem;
+      animation: fadeIn 3s ease-in-out;
+      max-width: 600px;
+    }
+
+    .lyrics {
+      font-size: 1rem;
+      max-width: 80%;
+      margin: 1rem auto;
+      opacity: 0;
+      animation: fadeLyrics 20s infinite;
+    }
+
+    @keyframes fadeLyrics {
+      0%, 100% { opacity: 0; }
+      10%, 90% { opacity: 1; }
+    }
+
+    .audio-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: hotpink;
+      border: none;
+      border-radius: 25px;
+      color: white;
+      font-size: 0.95rem;
+      padding: 12px 20px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+      z-index: 5;
+      animation: pulse 3s infinite;
     }
 
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
-    }
-
-    .audio-controls {
-      margin-top: 1rem;
-      animation: fadeIn 5s ease-in-out;
-    }
-
-    .audio-controls audio {
-      display: none;
-    }
-
-    .replay-button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 8px;
-      background-color: #ff69b4;
-      color: white;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .replay-button:hover {
-      background-color: #ff1493;
     }
 
     .hidden {
@@ -111,7 +120,7 @@
 
     .final-message {
       font-size: 1.4rem;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
       color: #ffe4ec;
       animation: fadeIn 2s ease-in-out;
     }
@@ -119,31 +128,6 @@
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
-    }
-
-    .lyrics {
-      position: absolute;
-      bottom: 15px;
-      width: 100%;
-      font-size: 1rem;
-      color: #ffdbe8;
-      animation: fadeInOut 10s ease-in-out infinite;
-      text-shadow: 1px 1px 3px #000;
-    }
-
-    @keyframes fadeInOut {
-      0% { opacity: 0; transform: translateY(20px); }
-      20% { opacity: 1; transform: translateY(0); }
-      80% { opacity: 1; }
-      100% { opacity: 0; transform: translateY(-20px); }
-    }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2rem; }
-      .countdown { font-size: 1.5rem; }
-      .message { font-size: 1rem; padding: 0 1rem; }
-      .photo { width: 150px; height: 150px; }
-      .lyrics { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -154,62 +138,33 @@
     Your browser does not support the video tag.
   </video>
 
-  <!-- Overlay -->
   <div class="overlay">
     <img src="PICTURE.JPEG" alt="My Love" class="photo" />
     <h1>Counting down to you, my pink heart 💗</h1>
-    <div class="countdown" id="timer">Loading...</div>
-    <div class="message" id="main-message">
-      I’ve missed your voice, your smile, your everything.<br>
-      Every second brings me closer to seeing you again.<br>
-      I’ll be waiting with all my heart 💞
-    </div>
-
-    <div class="audio-controls">
-      <audio id="love-song" loop>
-        <source src="hrs-and-hrs.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
-      <button id="play-btn" class="replay-button">Play Song</button>
-    </div>
-
-    <div class="lyrics" id="lyrics-line">I could do this for hours</div>
-
+    <div class="countup" id="lastSeen">Last saw you: Loading...</div>
+    <div class="countdown" id="timer">Loading countdown...</div>
+    <div class="message" id="message">I’ve missed your voice, your smile, your everything. Every second brings me closer to seeing you again. I’ll be waiting with all my heart 💞</div>
+    <div class="lyrics" id="lyrics">I could do this for hours and hours and hours...</div>
     <div id="final" class="hidden">
-      <div class="final-message">She's back!!! I’m so happy you're here 💘</div>
-      <button class="replay-button" onclick="location.reload()">Replay Countdown</button>
+      <div class="final-message">You’re here now, and I’m wrapped in the warmth of your love 💘</div>
     </div>
   </div>
 
-  <!-- Confetti -->
-  <canvas id="confetti-canvas" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;"></canvas>
+  <button class="audio-button" id="playBtn">Click me, baby 😘</button>
+  <audio id="song" loop>
+    <source src="hrs-and-hrs.mp3" type="audio/mpeg" />
+  </audio>
 
+  <canvas id="confetti-canvas" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;"></canvas>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
   <script>
     const countdownEl = document.getElementById("timer");
     const finalEl = document.getElementById("final");
+    const messageEl = document.getElementById("message");
+    const lastSeenEl = document.getElementById("lastSeen");
+    const lyricsEl = document.getElementById("lyrics");
     const confettiCanvas = document.getElementById("confetti-canvas");
-    const lyrics = document.getElementById("lyrics-line");
-    const audio = document.getElementById("love-song");
-    const playButton = document.getElementById("play-btn");
-    const message = document.getElementById("main-message");
-
-    const lyricsLines = [
-      "I could do this for hours",
-      "And hours and hours",
-      "You give me a superpower",
-      "Order shrimp and lobster towers",
-      "You sit me up on the counter",
-      "Stormin' for a couple hours",
-      "A love like ours",
-      "Holdin’ you close for hours"
-    ];
-
-    let lyricIndex = 0;
-    setInterval(() => {
-      lyrics.textContent = lyricsLines[lyricIndex];
-      lyricIndex = (lyricIndex + 1) % lyricsLines.length;
-    }, 8000);
 
     function launchConfetti() {
       confettiCanvas.classList.remove("hidden");
@@ -217,11 +172,20 @@
       confettiInstance({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
     }
 
+    const lastSeenTime = new Date("February 3, 2025 07:00:00").getTime();
+    function updateLastSeen() {
+      const now = new Date().getTime();
+      const gap = now - lastSeenTime;
+      const days = Math.floor(gap / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      lastSeenEl.innerHTML = `It’s been ${days} days and ${hours} hours since I last saw you 💔`;
+    }
+
     function updateCountdown() {
       const now = new Date();
       const target = new Date("June 4, 2025 14:00:00").getTime();
-      const currentTime = now.getTime();
-      const gap = target - currentTime;
+      const current = now.getTime();
+      const gap = target - current;
 
       const d = Math.floor(gap / (1000 * 60 * 60 * 24));
       const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -231,42 +195,52 @@
       if (gap > 0) {
         countdownEl.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
 
-        const currentHours = now.getHours();
-        const currentMinutes = now.getMinutes();
-        const totalMinutes = currentHours * 60 + currentMinutes;
+        const hour = now.getHours();
+        const min = now.getMinutes();
+        const date = now.getDate();
 
-        if (now.getMonth() === 5 && now.getDate() === 4) {
-          if (totalMinutes >= 420 && totalMinutes < 480) {
-            message.innerHTML = "Good morning, my love!";
-          } else if (totalMinutes >= 480 && totalMinutes < 540) {
-            message.innerHTML = "Wishing you a safe journey, my heart beats with yours across every mile.";
-          } else if (totalMinutes >= 540 && totalMinutes < 655) {
-            message.innerHTML = "As you check in, know that I’m already counting down to hold you close.";
-          } else if (totalMinutes >= 655 && totalMinutes < 775) {
-            message.innerHTML = "The plane takes flight, but my thoughts are already wrapped around you.";
-          } else if (totalMinutes >= 775 && totalMinutes < 840) {
-            message.innerHTML = "You’re almost home, and my heart can’t wait to welcome you.";
-          } else if (totalMinutes >= 840) {
-            message.innerHTML = "You’re here now, and I’m wrapped in the warmth of your love.";
+        if (now.getMonth() === 5 && date === 4) {
+          if (hour >= 14) {
+            finalEl.classList.remove("hidden");
+            messageEl.classList.add("hidden");
+          } else if (hour >= 12 && min >= 55) {
+            messageEl.innerHTML = "You’re almost home, and my heart can’t wait to welcome you.";
+          } else if (hour >= 10 && min >= 55) {
+            messageEl.innerHTML = "The plane takes flight, but my thoughts are already wrapped around you.";
+          } else if (hour >= 9) {
+            messageEl.innerHTML = "As you check in, know that I’m already counting down to hold you close.";
+          } else if (hour >= 8) {
+            messageEl.innerHTML = "Wishing you a safe journey, my heart beats with yours across every mile.";
+          } else if (hour >= 7) {
+            messageEl.innerHTML = "Good morning, my love!";
           }
         }
+
       } else {
         countdownEl.innerHTML = "";
         finalEl.classList.remove("hidden");
+        messageEl.classList.add("hidden");
         launchConfetti();
-        clearInterval(intervalId);
+        clearInterval(countdownInterval);
       }
     }
 
-    playButton.addEventListener("click", () => {
-      if (audio.paused) {
-        audio.play();
-        playButton.textContent = "Now playing your favorite song 🎶";
-      }
-    });
+    updateLastSeen();
+    const countdownInterval = setInterval(() => {
+      updateCountdown();
+      updateLastSeen();
+    }, 1000);
 
-    const intervalId = setInterval(updateCountdown, 1000);
-    updateCountdown();
+    const playBtn = document.getElementById("playBtn");
+    const song = document.getElementById("song");
+
+    playBtn.addEventListener("click", () => {
+      song.play().then(() => {
+        playBtn.innerText = "Now playing your favorite song ❤️";
+      }).catch(() => {
+        playBtn.innerText = "Tap me again, baby 😘";
+      });
+    });
   </script>
 </body>
 </html>
