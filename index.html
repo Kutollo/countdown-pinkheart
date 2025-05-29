@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -9,120 +8,144 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
+    }body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
 
-    body, html {
-      height: 100%;
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
-      text-align: center;
-      overflow: hidden;
-    }
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;
+}
 
-    video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: -2;
-    }
+.overlay {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
 
-    .overlay {
-      height: 100%;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.55);
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem;
-    }
+h1 {
+  font-size: 2.7rem;
+  margin-bottom: 1rem;
+  animation: fadeIn 2s ease-in-out;
+}
 
-    h1 {
-      font-size: 2.7rem;
-      margin-bottom: 1rem;
-      animation: fadeIn 2s ease-in-out;
-    }
+.countdown {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 3s ease-in-out;
+}
 
-    .countdown {
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 1.5rem;
-      animation: fadeIn 3s ease-in-out;
-    }
+.message {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 4s ease-in-out;
+  max-width: 600px;
+}
 
-    .message {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-      animation: fadeIn 4s ease-in-out;
-      max-width: 600px;
-    }
+.photo {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 4px solid white;
+  object-fit: cover;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  margin-bottom: 2rem;
+  animation: pulse 4s infinite ease-in-out;
+}
 
-    .photo {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      border: 4px solid white;
-      object-fit: cover;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-      margin-bottom: 2rem;
-      animation: pulse 4s infinite ease-in-out;
-    }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
+.audio-controls {
+  margin-top: 1rem;
+  animation: fadeIn 5s ease-in-out;
+}
 
-    .audio-controls {
-      margin-top: 1rem;
-      animation: fadeIn 5s ease-in-out;
-    }
+.audio-controls audio {
+  width: 250px;
+  outline: none;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(255, 192, 203, 0.4);
+}
 
-    .audio-controls audio {
-      width: 250px;
-      outline: none;
-      border-radius: 20px;
-      box-shadow: 0 0 10px rgba(255, 192, 203, 0.4);
-    }
+.hidden {
+  display: none;
+}
 
-    .hidden {
-      display: none;
-    }
+.final-message {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  color: #ffe4ec;
+  animation: fadeIn 2s ease-in-out;
+}
 
-    .final-message {
-      font-size: 1.4rem;
-      margin-top: 2rem;
-      color: #ffe4ec;
-      animation: fadeIn 2s ease-in-out;
-    }
+.replay-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff69b4;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
 
-    .replay-button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 8px;
-      background-color: #ff69b4;
-      color: white;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
+.replay-button:hover {
+  background-color: #ff1493;
+}
 
-    .replay-button:hover {
-      background-color: #ff1493;
-    }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+/* Flying hearts */
+.heart {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center;
+  background-size: contain;
+  animation: floatHeart 8s linear infinite;
+  z-index: 0;
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(100vh) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1);
+    opacity: 0;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -130,10 +153,17 @@
   <video autoplay muted loop>
     <source src="video.M4V" type="video/mp4" />
     Your browser does not support the video tag.
-  </video>
-
-  <!-- Overlay -->
-  <div class="overlay">
+  </video>  <!-- Flying hearts -->  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 800);
+  </script>  <!-- Overlay -->  <div class="overlay">
     <img src="PICTURE.JPEG" alt="My Love" class="photo" />
     <h1>Counting down to you, my pink heart 💗</h1>
     <div class="countdown" id="timer">Loading...</div>
@@ -152,13 +182,9 @@
       <div class="final-message">She's back!!! I’m so happy you're here 💘</div>
       <button class="replay-button" onclick="location.reload()">Replay Countdown</button>
     </div>
-  </div>
+  </div>  <!-- Confetti --><canvas id="confetti-canvas" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;"></canvas>
 
-  <!-- Confetti -->
-  <canvas id="confetti-canvas" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;"></canvas>
-
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>  <script>
     const countdownEl = document.getElementById("timer");
     const finalEl = document.getElementById("final");
     const confettiCanvas = document.getElementById("confetti-canvas");
@@ -191,6 +217,5 @@
 
     const intervalId = setInterval(updateCountdown, 1000);
     updateCountdown();
-  </script>
-</body>
+  </script></body>
 </html>
