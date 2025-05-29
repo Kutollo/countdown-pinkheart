@@ -23,7 +23,8 @@
     top: 0; left: 0;
     width: 100vw; height: 100vh;
     object-fit: cover;
-    z-index: -2;
+    z-index: -1;
+    pointer-events: none;
   }
   .overlay {
     height: 100%;
@@ -117,8 +118,8 @@
 </style>
 </head>
 <body>
-  <video autoplay muted loop playsinline>
-    <source src="video.M4V" type="video/mp4" />
+  <video autoplay muted loop playsinline preload="auto" tabindex="-1" aria-hidden="true">
+    <source src="video.m4v" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
 
