@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -9,128 +8,120 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
+    }body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
 
-    body, html {
-      height: 100%;
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
-      text-align: center;
-      overflow: hidden;
-    }
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;
+}
 
-    video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: -2;
-    }
+.overlay {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
 
-    .overlay {
-      height: 100%;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.55);
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-    }
+h1 {
+  font-size: 2.7rem;
+  margin-bottom: 1rem;
+  animation: fadeIn 2s ease-in-out;
+}
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      animation: fadeIn 2s ease-in-out;
-    }
+.countdown {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 3s ease-in-out;
+}
 
-    .countdown {
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-      animation: fadeIn 3s ease-in-out;
-    }
+.message {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 4s ease-in-out;
+  max-width: 600px;
+  transition: opacity 1s ease-in-out;
+}
 
-    .message {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-      animation: fadeIn 4s ease-in-out;
-      max-width: 90%;
-    }
+.photo {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 4px solid white;
+  object-fit: cover;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  margin-bottom: 2rem;
+  animation: pulse 4s infinite ease-in-out;
+}
 
-    .photo {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      border: 4px solid white;
-      object-fit: cover;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-      margin-bottom: 2rem;
-      animation: heartbeat 3s infinite ease-in-out;
-    }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
 
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
+.audio-controls {
+  margin-top: 1rem;
+  animation: fadeIn 5s ease-in-out;
+}
 
-    .audio-controls {
-      margin-top: 1rem;
-      animation: fadeIn 5s ease-in-out;
-    }
+.audio-controls audio {
+  width: 250px;
+  outline: none;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(255, 192, 203, 0.4);
+}
 
-    #audio-btn {
-      padding: 10px 20px;
-      background-color: #ff69b4;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(255, 192, 203, 0.5);
-    }
+.hidden {
+  display: none;
+}
 
-    #audio-btn:hover {
-      background-color: #ff1493;
-    }
+.final-message {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  color: #ffe4ec;
+  animation: fadeIn 2s ease-in-out;
+}
 
-    .hidden {
-      display: none;
-    }
+.replay-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff69b4;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
 
-    .final-message {
-      font-size: 1.4rem;
-      margin-top: 2rem;
-      color: #ffe4ec;
-      animation: fadeIn 2s ease-in-out;
-    }
+.replay-button:hover {
+  background-color: #ff1493;
+}
 
-    .replay-button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 8px;
-      background-color: #ff69b4;
-      color: white;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    .replay-button:hover {
-      background-color: #ff1493;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
 <body>
@@ -138,55 +129,29 @@
   <video autoplay muted loop>
     <source src="video.M4V" type="video/mp4" />
     Your browser does not support the video tag.
-  </video>
-
-  <!-- Overlay -->
-  <div class="overlay">
-    <img src="IMG_3614.jpg" alt="My Love" class="photo" />
+  </video>  <!-- Overlay -->  <div class="overlay">
+    <img src="PICTURE.JPEG" alt="My Love" class="photo" />
     <h1>Counting down to you, my pink heart 💗</h1>
     <div class="countdown" id="timer">Loading...</div>
-    <div class="message" id="dynamic-message">
-      I’ve missed your voice, your smile, your everything.<br>
-      Every second brings me closer to seeing you again.<br>
-      I’ll be waiting with all my heart 💞
-    </div>
-
+    <div class="message" id="lyrics">I could do this for hours 💖</div>
     <div class="audio-controls">
-      <button onclick="toggleAudio()" id="audio-btn">Play Music</button>
-      <audio id="bg-music" loop>
+      <button onclick="document.getElementById('song').play()">Play Music</button>
+      <audio id="song">
         <source src="hrs-and-hrs.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
     </div>
-
     <div id="final" class="hidden">
-      <div class="final-message">You’re here now, and I’m wrapped in the warmth of your love 💘</div>
+      <div class="final-message">She's here now, and I’m wrapped in the warmth of your love 💘</div>
       <button class="replay-button" onclick="location.reload()">Replay Countdown</button>
     </div>
-  </div>
+  </div>  <!-- Confetti --><canvas id="confetti-canvas" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;"></canvas>
 
-  <!-- Confetti -->
-  <canvas id="confetti-canvas" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;"></canvas>
-
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>  <script>
     const countdownEl = document.getElementById("timer");
     const finalEl = document.getElementById("final");
     const confettiCanvas = document.getElementById("confetti-canvas");
-    const messageEl = document.getElementById("dynamic-message");
-
-    const music = document.getElementById("bg-music");
-    const audioBtn = document.getElementById("audio-btn");
-
-    function toggleAudio() {
-      if (music.paused) {
-        music.play();
-        audioBtn.textContent = "Pause Music";
-      } else {
-        music.pause();
-        audioBtn.textContent = "Play Music";
-      }
-    }
+    const messageEl = document.getElementById("lyrics");
 
     function launchConfetti() {
       confettiCanvas.classList.remove("hidden");
@@ -195,38 +160,35 @@
     }
 
     function updateCountdown() {
+      const now = new Date();
       const target = new Date("June 4, 2025 14:00:00").getTime();
-      const now = new Date().getTime();
-      const gap = target - now;
+      const gap = target - now.getTime();
 
       const d = Math.floor(gap / (1000 * 60 * 60 * 24));
       const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
       const s = Math.floor((gap % (1000 * 60)) / 1000);
 
-      if (gap > 0) {
-        countdownEl.innerHTML = `<b>${d}d ${h}h ${m}m ${s}s</b>`;
+      const hourNow = now.getHours();
+      const minuteNow = now.getMinutes();
 
-        const date = new Date();
-        const hrs = date.getHours();
-        const mins = date.getMinutes();
-
-        // Dynamic message updates
-        if (hrs === 7) {
-          messageEl.innerHTML = "Good morning, my love!";
-        } else if (hrs === 8) {
-          messageEl.innerHTML = "Wishing you a safe journey, my heart beats with yours across every mile.";
-        } else if (hrs === 9) {
-          messageEl.innerHTML = "As you check in, know that I’m already counting down to hold you close.";
-        } else if (hrs === 10 && mins >= 55) {
-          messageEl.innerHTML = "The plane takes flight, but my thoughts are already wrapped around you.";
-        } else if (hrs === 12 && mins >= 55) {
-          messageEl.innerHTML = "You’re almost home, and my heart can’t wait to welcome you.";
-        } else {
-          // default message
-          messageEl.innerHTML = "I’ve missed your voice, your smile, your everything.<br>Every second brings me closer to seeing you again.<br>I’ll be waiting with all my heart 💞";
+      if (now.toDateString() === new Date("June 4, 2025").toDateString()) {
+        if (hourNow === 7) messageEl.innerHTML = "Good morning, my love!";
+        else if (hourNow === 8) messageEl.innerHTML = "Wishing you a safe journey, my heart beats with yours across every mile.";
+        else if (hourNow === 9) messageEl.innerHTML = "As you check in, know that I’m already counting down to hold you close.";
+        else if (hourNow === 10 && minuteNow >= 55) messageEl.innerHTML = "The plane takes flight, but my thoughts are already wrapped around you.";
+        else if (hourNow === 12 && minuteNow >= 55) messageEl.innerHTML = "You’re almost home, and my heart can’t wait to welcome you.";
+        else if (hourNow >= 14) {
+          countdownEl.innerHTML = "";
+          finalEl.classList.remove("hidden");
+          launchConfetti();
+          clearInterval(intervalId);
+          return;
         }
+      }
 
+      if (gap > 0) {
+        countdownEl.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
       } else {
         countdownEl.innerHTML = "";
         finalEl.classList.remove("hidden");
@@ -235,8 +197,21 @@
       }
     }
 
+    const lyricsText = `Uh, oh, ooh, mmm (Yeah)...\nI could do this for hours\nSit and talk to you for hours...\n...\nHours and hours`;
+    const lyricsLines = lyricsText.split("\n").filter(Boolean);
+    let lyricIndex = 0;
+    function cycleLyrics() {
+      if (!lyricsLines.length) return;
+      messageEl.style.opacity = 0;
+      setTimeout(() => {
+        messageEl.innerHTML = lyricsLines[lyricIndex];
+        messageEl.style.opacity = 1;
+        lyricIndex = (lyricIndex + 1) % lyricsLines.length;
+      }, 800);
+    }
+
     const intervalId = setInterval(updateCountdown, 1000);
+    setInterval(cycleLyrics, 8000);
     updateCountdown();
-  </script>
-</body>
+  </script></body>
 </html>
