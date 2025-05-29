@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Countdown to You 💖</title>
   <style>
     * {
@@ -10,7 +9,6 @@
       padding: 0;
       box-sizing: border-box;
     }
-
     body, html {
       height: 100%;
       font-family: 'Segoe UI', sans-serif;
@@ -18,7 +16,6 @@
       text-align: center;
       overflow: hidden;
     }
-
     video {
       position: fixed;
       top: 0;
@@ -28,7 +25,6 @@
       object-fit: cover;
       z-index: -2;
     }
-
     .overlay {
       height: 100%;
       width: 100%;
@@ -43,27 +39,20 @@
       align-items: center;
       padding: 2rem;
     }
-
     h1 {
       font-size: 2.7rem;
       margin-bottom: 1rem;
-      animation: fadeIn 2s ease-in-out;
     }
-
     .countdown {
       font-size: 2rem;
       font-weight: bold;
       margin-bottom: 1.5rem;
-      animation: fadeIn 3s ease-in-out;
     }
-
     .message {
       font-size: 1.2rem;
       margin-bottom: 1.5rem;
-      animation: fadeIn 4s ease-in-out;
       max-width: 600px;
     }
-
     .photo {
       width: 220px;
       height: 220px;
@@ -74,100 +63,88 @@
       margin-bottom: 2rem;
       animation: pulse 4s infinite ease-in-out;
     }
-
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
     }
-
-    .audio-controls {
-      margin-top: 1rem;
-      animation: fadeIn 5s ease-in-out;
-    }
-
-    .audio-controls audio {
-      width: 250px;
-      outline: none;
-      border-radius: 20px;
-      box-shadow: 0 0 10px rgba(255, 192, 203, 0.4);
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .final-message {
-      font-size: 1.4rem;
-      margin-top: 2rem;
-      color: #ffe4ec;
-      animation: fadeIn 2s ease-in-out;
-    }
-
-    .replay-button {
-      margin-top: 20px;
-      padding: 10px 20px;
+    .now-playing {
+      margin: 10px 0;
       font-size: 1rem;
-      border: none;
-      border-radius: 8px;
-      background-color: #ff69b4;
-      color: white;
-      cursor: pointer;
-      transition: background 0.3s;
+      color: #ffc0cb;
+      animation: fadeIn 3s ease-in-out;
     }
-
-    .replay-button:hover {
-      background-color: #ff1493;
+    .custom-player {
+      background: #fff0f5;
+      border-radius: 20px;
+      padding: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 0 10px #ffb6c1;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    .custom-player img {
+      width: 40px;
+      height: 40px;
+      animation: rotate 10s linear infinite;
+      border-radius: 50%;
+    }
+    .custom-player audio {
+      outline: none;
+    }
+    @keyframes rotate {
+      from { transform: rotate(0); }
+      to { transform: rotate(360deg); }
+    }
+    .note {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: floatNote 3s ease-in infinite;
+      color: #ff69b4;
+    }
+    @keyframes floatNote {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100px); opacity: 0; }
+    }
+    .lyric {
+      position: absolute;
+      font-size: 1.2rem;
+      color: #ffddee;
+      opacity: 0;
+      animation: fadeInOut 8s ease-in-out infinite;
+    }
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0; }
+      20%, 80% { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <!-- Background video -->
   <video autoplay muted loop>
     <source src="video.M4V" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-
-  <!-- Overlay -->
-  <div class="overlay">
+  </video>  <div class="overlay">
     <img src="PICTURE.JPEG" alt="My Love" class="photo" />
     <h1>Counting down to you, my pink heart 💗</h1>
     <div class="countdown" id="timer">Loading...</div>
     <div class="message">
-      I’ve missed your voice, your smile, your everything.<br>
-      Every second brings me closer to seeing you again.<br>
-      I’ll be waiting with all my heart 💞
+      Every second brings me closer to seeing you again. I’ve missed you deeply.
     </div>
-    <div class="audio-controls">
+    <div class="now-playing">🎶 Now Playing: “Hrs and Hrs” – For My Pink Heart 💖</div>
+    <div class="custom-player">
+      <img src="PICTURE.JPEG" alt="cover" />
       <audio controls autoplay loop>
         <source src="hrs-and-hrs.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
       </audio>
     </div>
-    <div id="final" class="hidden">
-      <div class="final-message">She's back!!! I’m so happy you're here 💘</div>
-      <button class="replay-button" onclick="location.reload()">Replay Countdown</button>
-    </div>
-  </div>
-
-  <!-- Confetti -->
-  <canvas id="confetti-canvas" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;"></canvas>
-
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script>
+  </div>  <div class="note" style="left:10%; top:90%;">🎵</div>
+  <div class="note" style="left:30%; top:95%;">💖</div>
+  <div class="note" style="left:60%; top:92%;">🎶</div>
+  <div class="note" style="left:80%; top:94%;">💘</div>  <div class="lyric" style="top: 10%; left: 5%; animation-delay: 0s;">I could do this for hours</div>
+  <div class="lyric" style="top: 20%; left: 70%; animation-delay: 2s;">Yours, mine, ours</div>
+  <div class="lyric" style="top: 35%; left: 40%; animation-delay: 4s;">I wanna give you your flowers</div>
+  <div class="lyric" style="top: 50%; left: 20%; animation-delay: 6s;">Together the world could be ours</div>
+  <div class="lyric" style="top: 65%; left: 75%; animation-delay: 8s;">Layin' on your chest for hours</div>
+  <div class="lyric" style="top: 80%; left: 10%; animation-delay: 10s;">I pray for it on my knees</div>  <script>
     const countdownEl = document.getElementById("timer");
-    const finalEl = document.getElementById("final");
-    const confettiCanvas = document.getElementById("confetti-canvas");
-
-    function launchConfetti() {
-      confettiCanvas.classList.remove("hidden");
-      const confettiInstance = confetti.create(confettiCanvas, { resize: true });
-      confettiInstance({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
-    }
 
     function updateCountdown() {
       const target = new Date("June 4, 2025 13:00:00").getTime();
@@ -182,15 +159,11 @@
       if (gap > 0) {
         countdownEl.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
       } else {
-        countdownEl.innerHTML = "";
-        finalEl.classList.remove("hidden");
-        launchConfetti();
-        clearInterval(intervalId);
+        countdownEl.innerHTML = "She's back!!! 💕";
       }
     }
 
-    const intervalId = setInterval(updateCountdown, 1000);
+    setInterval(updateCountdown, 1000);
     updateCountdown();
-  </script>
-</body>
+  </script></body>
 </html>
