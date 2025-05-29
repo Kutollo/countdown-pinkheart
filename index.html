@@ -1,223 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Countdown to You 💖</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counting Down to My Pink Heart</title>
   <style>
-    * {
+    body, html {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
       height: 100%;
       overflow: hidden;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #000;
-      color: white;
-    }
-
-    video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      min-width: 100vw;
-      min-height: 100vh;
-      object-fit: cover;
-      z-index: -2;
-    }
-
-    .overlay {
-      position: relative;
-      z-index: 2;
-      height: 100%;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      background: linear-gradient(to bottom, #1b2735, #090a0f);
+      font-family: 'Arial', sans-serif;
+      color: #fff;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 20px;
-    }
+    }.image-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #fff;
+  margin-bottom: 20px;
+}
 
-    .photo {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid white;
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
-      margin-bottom: 1rem;
-      animation: pulse 6s infinite;
-    }
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
 
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-    }
+.timer, .apart-days {
+  font-size: 1.2rem;
+  margin: 5px 0;
+}
 
-    .countdown {
-      font-size: 1.4rem;
-      margin-bottom: 8px;
-    }
+.plane-animation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 20px 0;
+  width: 90%;
+}
 
-    .apart {
-      font-size: 1rem;
-      margin-bottom: 12px;
-    }
+.city-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
 
-    .plane-container {
-      position: relative;
-      width: 90%;
-      height: 40px;
-      margin-bottom: 15px;
-      overflow: hidden;
-    }
+.flight-path {
+  width: 100%;
+  height: 2px;
+  background: #ccc;
+  position: absolute;
+  top: 50%;
+  left: 0;
+}
 
-    .route-line {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      height: 2px;
-      width: 100%;
-      background-color: #fff;
-      opacity: 0.4;
-    }
+.plane {
+  position: absolute;
+  animation: flyAcross 6s linear infinite;
+  font-size: 1.5rem;
+}
 
-    .labels {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
+@keyframes flyAcross {
+  from { left: 0%; }
+  to { left: 90%; }
+}
 
-    .plane {
-      font-size: 1.2rem;
-      position: absolute;
-      animation: fly 6s linear infinite;
-    }
+.message {
+  font-size: 1rem;
+  margin-top: 10px;
+  max-width: 90%;
+}
 
-    @keyframes fly {
-      0% { left: 0%; top: 0%; transform: rotate(5deg); }
-      100% { left: 100%; top: 0%; transform: rotate(5deg); }
-    }
+.audio-player {
+  margin-top: 20px;
+}
 
-    .message {
-      font-size: 1rem;
-      max-width: 300px;
-      margin-bottom: 12px;
-    }
+audio {
+  width: 200px;
+}
 
-    .lyrics {
-      font-size: 0.9rem;
-      max-width: 300px;
-      color: #ffeef5;
-      margin-bottom: 1rem;
-    }
-
-    .audio-controls audio {
-      width: 200px;
-      border-radius: 20px;
-      box-shadow: 0 0 10px rgba(255, 182, 193, 0.5);
-    }
-
-    .slideshow {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid #fff;
-    }
-
-    .slideshow img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      animation: fadeSlide 6s infinite alternate;
-    }
-
-    @keyframes fadeSlide {
-      0%, 49% { opacity: 1; content: url('PICTURE.JPEG'); }
-      50%, 100% { opacity: 1; content: url('IMG_3614.jpg'); }
-    }
-
-    @media (max-width: 480px) {
-      h1, .countdown, .apart, .message { font-size: 1rem; }
-      .lyrics { font-size: 0.8rem; }
-    }
   </style>
 </head>
-<body>
-
-  <video autoplay muted loop>
-    <source src="video.M4V" type="video/mp4" />
-  </video>
-
-  <div class="overlay">
-    <img src="PICTURE.JPEG" alt="" class="photo" />
-    <h1>Counting down to you, my pink heart 💗</h1>
-    <div class="countdown" id="timer">Loading...</div>
-    <div class="apart" id="apart">We've been apart for ...</div>
-
-    <div class="plane-container">
-      <div class="route-line"></div>
-      <div class="plane">✈️</div>
-      <div class="labels">
-        <span>Cape Town</span>
-        <span>Johannesburg</span>
-      </div>
-    </div>
-
-    <div class="message">I’ve been counting every moment.<br>I can’t wait to hold you again 🥺💕</div>
-    <div class="lyrics">I love you endlessly</div>
-
-    <div class="audio-controls">
-      <audio controls autoplay loop>
-        <source src="hrs-and-hrs.mp3" type="audio/mpeg" />
-      </audio>
-    </div>
-
-    <div class="slideshow">
-      <img src="PICTURE.JPEG" alt="slide" />
-    </div>
-  </div>
-
-  <script>
+<body>  <div class="image-container">
+    <img src="IMG_3614.jpg" alt="My Love">
+  </div>  <h1>Counting down to you, my pink heart 💗</h1>
+  <div class="timer" id="countdown">Loading...</div>
+  <div class="apart-days" id="apart">...</div>  <div class="plane-animation">
+    <div class="city-label" style="position:absolute;left:0;bottom:-20px">Cape Town</div>
+    <div class="flight-path"></div>
+    <div class="plane">✈️</div>
+    <div class="city-label" style="position:absolute;right:0;bottom:-20px">Johannesburg</div>
+  </div>  <div class="message">You're coming back from Cape Town to Johannesburg.<br>I’ve been counting every moment. I can’t wait to hold you again 🥺💕<br>I love you endlessly</div>  <div class="audio-player">
+    <audio controls autoplay loop>
+      <source src="hrs-and-hrs.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>  <script>
     function updateCountdown() {
-      const target = new Date("June 4, 2025 13:00:00").getTime();
+      const targetDate = new Date("June 4, 2025 13:00:00").getTime();
       const now = new Date().getTime();
-      const gap = target - now;
+      const distance = targetDate - now;
 
-      const d = Math.floor(gap / (1000 * 60 * 60 * 24));
-      const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((gap % (1000 * 60)) / 1000);
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      if (gap > 0) {
-        document.getElementById("timer").textContent = `${d}d ${h}h ${m}m ${s}s left till I hug you again 🫂💕`;
-      } else {
-        document.getElementById("timer").textContent = `You're finally here 💖`;
-      }
+      document.getElementById("countdown").innerText =
+        `${days}d ${hours}h ${minutes}m ${seconds}s left till I hug you again 🫂💕`;
 
-      // Days apart
       const lastSeen = new Date("February 3, 2025 07:00:00").getTime();
-      const daysApart = Math.floor((now - lastSeen) / (1000 * 60 * 60 * 24));
-      document.getElementById("apart").textContent = `We've been apart for ${daysApart} days 💔😢`;
+      const apartDays = Math.floor((now - lastSeen) / (1000 * 60 * 60 * 24));
+      document.getElementById("apart").innerText = `We've been apart for ${apartDays} days 💔😢`;
     }
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
-  </script>
-</body>
+  </script></body>
 </html>
