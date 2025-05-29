@@ -1,147 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Countdown to You 💖</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
+    }html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
 
-    html, body {
-      height: 100%;
-      width: 100%;
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
-      overflow: hidden;
-      text-align: center;
-      position: relative;
-    }
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;
+}
 
-    video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      z-index: -2;
-    }
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
 
-    .overlay {
-      background: rgba(0, 0, 0, 0.6);
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 1.5rem;
-    }
+.photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid white;
+  object-fit: cover;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  margin-bottom: 1.2rem;
+}
 
-    .photo {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid white;
-      margin-bottom: 1rem;
-      animation: pulse 4s infinite ease-in-out;
-    }
+h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
+.countdown, .countup, .message, .location {
+  font-size: 1rem;
+  margin: 0.3rem 0;
+  max-width: 90%;
+}
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
+.audio-controls {
+  margin-top: 1rem;
+}
 
-    .countdown, .countup {
-      font-size: 1.4rem;
-      margin-bottom: 0.7rem;
-    }
+.audio-controls audio {
+  width: 220px;
+  outline: none;
+  border-radius: 12px;
+}
 
-    .message {
-      font-size: 1.1rem;
-      margin: 1rem 0;
-      max-width: 90%;
-    }
+.final-message {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  color: #ffe4ec;
+}
 
-    .audio-controls audio {
-      width: 250px;
-      margin-top: 10px;
-      border-radius: 10px;
-      outline: none;
-    }
+.plane {
+  width: 60px;
+  animation: fly 6s linear infinite;
+  margin: 1rem 0;
+}
 
-    .lyrics {
-      font-size: 1rem;
-      margin-top: 1.5rem;
-      max-width: 90%;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      animation: fadeIn 6s ease-in-out;
-    }
+@keyframes fly {
+  0% { transform: translateX(-100vw); }
+  100% { transform: translateX(100vw); }
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .slideshow {
-      position: relative;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    @media (max-width: 600px) {
-      .photo {
-        width: 150px;
-        height: 150px;
-      }
-
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      .message {
-        font-size: 1rem;
-      }
-
-      .countdown, .countup {
-        font-size: 1.2rem;
-      }
-    }
   </style>
 </head>
 <body>
   <video autoplay muted loop>
-    <source src="video.M4V" type="video/mp4">
+    <source src="video.M4V" type="video/mp4" />
     Your browser does not support the video tag.
-  </video>
-
-  <div class="overlay">
-    <div class="slideshow">
-      <img src="PICTURE.JPEG" alt="My Love" class="photo" id="slide-img" />
-    </div>
-    <h1>Counting down to you, my pink heart 💗</h1>
-    <div class="countdown" id="timer">Loading countdown...</div>
-    <div class="countup" id="apart-time">We've been apart for 0 days</div>
+  </video>  <div class="overlay">
+    <img src="IMG_3614.jpg" alt="My Love" class="photo" id="slide-img" />
+    <h1>Countdown to you, my pink heart 💗</h1>
+    <div class="countdown" id="timer">Loading...</div>
+    <div class="countup" id="daysApart"></div>
+    <div class="location">You're coming back from Cape Town to Johannesburg ✈️</div>
+    <img src="plane.png" class="plane" alt="Flying plane animation" />
     <div class="message">
-      You're coming back from Cape Town to Johannesburg...<br>
-      And I've been counting every moment.<br>
-      I can't wait to hold you again 💞
+      Every moment away from you has felt like forever.<br />
+      I've counted every second, every minute, waiting to hold you again.<br />
+      I love you deeply, and I can't wait to see your beautiful smile again 💞
     </div>
     <div class="audio-controls">
       <audio controls autoplay loop>
@@ -149,57 +114,37 @@
         Your browser does not support the audio element.
       </audio>
     </div>
-    <div class="lyrics">
-      <strong>Lyrics (just for you):</strong><br>
-      “I could do this for hours and hours<br>
-      Sit and talk to you for hours<br>
-      I wanna give you your flowers<br>
-      ...<br>
-      I've never been in love like this<br>
-      I pray for it on my knees every night for some hours.”
-    </div>
-  </div>
-
-  <script>
+  </div>  <script>
     const countdownEl = document.getElementById("timer");
-    const apartEl = document.getElementById("apart-time");
-    const slideImg = document.getElementById("slide-img");
-    const images = ["PICTURE.JPEG", "IMG_3614.jpeg"];
-    let index = 0;
-
-    setInterval(() => {
-      index = (index + 1) % images.length;
-      slideImg.src = images[index];
-    }, 5000); // change every 5 seconds
+    const daysApartEl = document.getElementById("daysApart");
 
     function updateCountdown() {
       const target = new Date("June 4, 2025 13:00:00").getTime();
       const now = new Date().getTime();
-      const diff = target - now;
+      const gap = target - now;
 
-      if (diff > 0) {
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const mins = Math.floor((diff / (1000 * 60)) % 60);
-        const secs = Math.floor((diff / 1000) % 60);
-        countdownEl.innerText = `${days}d ${hours}h ${mins}m ${secs}s`;
+      const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+      const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((gap % (1000 * 60)) / 1000);
+
+      if (gap > 0) {
+        countdownEl.innerHTML = `Time till I hold you again: ${d}d ${h}h ${m}m ${s}s`;
       } else {
-        countdownEl.innerText = "She's back!!! 💘";
+        countdownEl.innerHTML = "She's back!!! I’m so happy you're here 💘";
       }
     }
 
-    function updateCountUp() {
+    function updateDaysApart() {
       const lastSeen = new Date("Feb 3, 2025 07:00:00").getTime();
       const now = new Date().getTime();
       const diff = now - lastSeen;
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      apartEl.innerText = `We've been apart for ${days} day${days !== 1 ? 's' : ''}`;
+      daysApartEl.innerHTML = `We've been apart for ${days} days`;
     }
 
     setInterval(updateCountdown, 1000);
-    setInterval(updateCountUp, 1000);
     updateCountdown();
-    updateCountUp();
-  </script>
-</body>
+    updateDaysApart();
+  </script></body>
 </html>
