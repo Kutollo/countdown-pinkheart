@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -9,228 +8,146 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
+    }body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
 
-    body, html {
-      height: 100%;
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
-      text-align: center;
-      overflow: hidden;
-    }
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;
+}
 
-    video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: -2;
-    }
+.overlay {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem;
+}
 
-    .overlay {
-      height: 100%;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.55);
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      padding: 1rem;
-    }
+h1 {
+  font-size: 2rem;
+  margin-top: 1rem;
+  animation: fadeIn 2s ease-in-out;
+}
 
-    h1 {
-      font-size: 2rem;
-      margin-top: 1rem;
-      animation: fadeIn 2s ease-in-out;
-    }
+.photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 4px solid white;
+  object-fit: cover;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  margin: 1rem 0;
+  animation: heartbeat 3s infinite ease-in-out;
+}
 
-    .photo {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 4px solid white;
-      object-fit: cover;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-      margin-top: 1rem;
-      animation: heartbeat 3s infinite ease-in-out;
-    }
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
 
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.06); }
-    }
+.countup, .countdown {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+  animation: fadeIn 2s ease-in-out;
+}
 
-    .countup, .countdown {
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin: 0.5rem 0;
-      animation: fadeIn 2s ease-in-out;
-    }
+.message {
+  font-size: 1rem;
+  margin: 1rem;
+  animation: fadeIn 3s ease-in-out;
+  max-width: 600px;
+}
 
-    .message {
-      font-size: 1rem;
-      margin: 1rem;
-      animation: fadeIn 3s ease-in-out;
-      max-width: 600px;
-    }
+.lyrics {
+  font-size: 1rem;
+  max-width: 80%;
+  margin: 1rem auto;
+  opacity: 0;
+  animation: fadeLyrics 20s infinite;
+  animation-delay: 10s;
+}
 
-    .lyrics {
-      font-size: 1rem;
-      max-width: 80%;
-      margin: 1rem auto;
-      opacity: 0;
-      animation: fadeLyrics 20s infinite;
-    }
+@keyframes fadeLyrics {
+  0%, 100% { opacity: 0; }
+  10%, 90% { opacity: 1; }
+}
 
-    @keyframes fadeLyrics {
-      0%, 100% { opacity: 0; }
-      10%, 90% { opacity: 1; }
-    }
+.audio-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: hotpink;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-size: 0.95rem;
+  padding: 12px 20px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+  z-index: 5;
+  animation: pulse 3s infinite;
+}
 
-    .audio-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: hotpink;
-      border: none;
-      border-radius: 25px;
-      color: white;
-      font-size: 0.95rem;
-      padding: 12px 20px;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
-      z-index: 5;
-      animation: pulse 3s infinite;
-    }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
+.hidden {
+  display: none;
+}
 
-    .hidden {
-      display: none;
-    }
+.final-message {
+  font-size: 1.4rem;
+  margin-top: 1.5rem;
+  color: #ffe4ec;
+  animation: fadeIn 2s ease-in-out;
+}
 
-    .final-message {
-      font-size: 1.4rem;
-      margin-top: 1.5rem;
-      color: #ffe4ec;
-      animation: fadeIn 2s ease-in-out;
-    }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
 <body>
-  <!-- Background video -->
   <video autoplay muted loop playsinline>
     <source src="video.M4V" type="video/mp4" />
     Your browser does not support the video tag.
-  </video>
-
-  <div class="overlay">
+  </video>  <div class="overlay">
+    <div class="countup" id="lastSeen">It’s been 115 days and 6 hours since I last saw you 💔</div>
     <img src="PICTURE.JPEG" alt="My Love" class="photo" />
-    <h1>Counting down to you, my pink heart 💗</h1>
-    <div class="countup" id="lastSeen">Last saw you: Loading...</div>
-    <div class="countdown" id="timer">Loading countdown...</div>
+    <div class="countdown" id="timer">Counting down to being with MyPinkHeart 💗 Counting down to MyPinkHeart 💗 6d 0h 31m 28s to go".replace("Counting down to MyPinkHeart 💗 </div>
     <div class="message" id="message">I’ve missed your voice, your smile, your everything. Every second brings me closer to seeing you again. I’ll be waiting with all my heart 💞</div>
     <div class="lyrics" id="lyrics">I could do this for hours and hours and hours...</div>
     <div id="final" class="hidden">
       <div class="final-message">You’re here now, and I’m wrapped in the warmth of your love 💘</div>
     </div>
-  </div>
+  </div><button class="audio-button" id="playBtn">Wanna hear a secret? Tap me 🩵🎶</button> <audio id="song" loop> <source src="hrs-and-hrs.mp3" type="audio/mpeg" /> </audio>
 
-  <button class="audio-button" id="playBtn">Click me, baby 😘</button>
-  <audio id="song" loop>
-    <source src="hrs-and-hrs.mp3" type="audio/mpeg" />
-  </audio>
+<canvas id="confetti-canvas" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;"></canvas>
 
-  <canvas id="confetti-canvas" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;"></canvas>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-  <script>
-    const countdownEl = document.getElementById("timer");
-    const finalEl = document.getElementById("final");
-    const messageEl = document.getElementById("message");
-    const lastSeenEl = document.getElementById("lastSeen");
-    const lyricsEl = document.getElementById("lyrics");
-    const confettiCanvas = document.getElementById("confetti-canvas");
-
-    function launchConfetti() {
-      confettiCanvas.classList.remove("hidden");
-      const confettiInstance = confetti.create(confettiCanvas, { resize: true });
-      confettiInstance({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
-    }
-
-    const lastSeenTime = new Date("February 3, 2025 07:00:00").getTime();
-    function updateLastSeen() {
-      const now = new Date().getTime();
-      const gap = now - lastSeenTime;
-      const days = Math.floor(gap / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      lastSeenEl.innerHTML = `It’s been ${days} days and ${hours} hours since I last saw you 💔`;
-    }
-
-    function updateCountdown() {
-      const now = new Date();
-      const target = new Date("June 4, 2025 14:00:00").getTime();
-      const current = now.getTime();
-      const gap = target - current;
-
-      const d = Math.floor(gap / (1000 * 60 * 60 * 24));
-      const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((gap % (1000 * 60)) / 1000);
-
-      if (gap > 0) {
-        countdownEl.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
-
-        const hour = now.getHours();
-        const min = now.getMinutes();
-        const date = now.getDate();
-
-        if (now.getMonth() === 5 && date === 4) {
-          if (hour >= 14) {
-            finalEl.classList.remove("hidden");
-            messageEl.classList.add("hidden");
-          } else if (hour >= 12 && min >= 55) {
-            messageEl.innerHTML = "You’re almost home, and my heart can’t wait to welcome you.";
-          } else if (hour >= 10 && min >= 55) {
-            messageEl.innerHTML = "The plane takes flight, but my thoughts are already wrapped around you.";
-          } else if (hour >= 9) {
-            messageEl.innerHTML = "As you check in, know that I’m already counting down to hold you close.";
-          } else if (hour >= 8) {
-            messageEl.innerHTML = "Wishing you a safe journey, my heart beats with yours across every mile.";
-          } else if (hour >= 7) {
-            messageEl.innerHTML = "Good morning, my love!";
-          }
-        }
-
-      } else {
-        countdownEl.innerHTML = "";
-        finalEl.classList.remove("hidden");
-        messageEl.classList.add("hidden");
-        launchConfetti();
-        clearInterval(countdownInterval);
-      }
-    }
-
-    updateLastSeen();
-    const countdownInterval = setInterval(() => {
-      updateCountdown();
-      updateLastSeen();
-    }, 1000);
-
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>  <script>
     const playBtn = document.getElementById("playBtn");
     const song = document.getElementById("song");
 
@@ -241,6 +158,5 @@
         playBtn.innerText = "Tap me again, baby 😘";
       });
     });
-  </script>
-</body>
+  </script></body>
 </html>
