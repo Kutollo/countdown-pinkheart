@@ -5,14 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Countdown to You 💖</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * {margin: 0; padding: 0; box-sizing: border-box;}
     body, html {
       height: 100%;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       color: white;
       text-align: center;
       overflow: hidden;
@@ -27,56 +23,28 @@
       z-index: -2;
     }
     .overlay {
-      height: 100%;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.55);
-      position: absolute;
-      top: 0; left: 0;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      position: relative;
+      z-index: 2;
       padding: 2rem;
+      background: rgba(0, 0, 0, 0.5);
+      height: 100%;
+      overflow-y: auto;
     }
     h1 {
-      font-size: 2.7rem;
+      font-size: 2.5rem;
       margin-bottom: 1rem;
-      z-index: 2;
     }
     .countdown {
       font-size: 2rem;
       font-weight: bold;
-      margin-bottom: 1.5rem;
-      z-index: 2;
+      margin: 1rem 0;
     }
     .message {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
       max-width: 600px;
-      z-index: 2;
-    }
-    .slideshow {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      border: 4px solid white;
-      object-fit: cover;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-      margin-bottom: 2rem;
-      animation: pulse 4s infinite ease-in-out;
-      z-index: 2;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    .now-playing {
-      margin: 10px 0;
-      font-size: 1rem;
-      color: #ffc0cb;
-      animation: fadeIn 3s ease-in-out;
-      z-index: 2;
+      margin-left: auto;
+      margin-right: auto;
     }
     .custom-player {
       background: #fff0f5;
@@ -86,52 +54,27 @@
       align-items: center;
       gap: 10px;
       box-shadow: 0 0 10px #ffb6c1;
-      z-index: 2;
+      margin-bottom: 1rem;
     }
     .custom-player img {
       width: 40px;
       height: 40px;
-      animation: rotate 10s linear infinite;
       border-radius: 50%;
     }
-    .custom-player audio {
-      outline: none;
-    }
-    @keyframes rotate {
-      from { transform: rotate(0); }
-      to { transform: rotate(360deg); }
-    }
-    .note {
-      position: absolute;
-      font-size: 1.5rem;
-      animation: floatNote 3s ease-in infinite;
-      color: #ff69b4;
-      z-index: 2;
-    }
-    @keyframes floatNote {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-100px); opacity: 0; }
-    }
-    .lyric {
-      position: absolute;
-      font-size: 1.2rem;
-      color: #fff0f5;
-      text-shadow: 1px 1px 3px #000;
-      opacity: 0;
-      animation: fadeInOut 40s ease-in-out infinite;
-      z-index: 2;
-    }
-    @keyframes fadeInOut {
-      0%, 10%, 90%, 100% { opacity: 0; }
-      25%, 75% { opacity: 1; }
-    }
-    /* New travel animation styles */
-    .travel-container {
-      position: relative;
-      width: 320px;
-      height: 70px;
+    .slideshow {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 4px solid white;
+      object-fit: cover;
       margin-bottom: 1rem;
-      z-index: 2;
+      animation: pulse 4s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .travel-container {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -139,18 +82,14 @@
       color: #ffb6c1;
       font-weight: 600;
       font-size: 1.1rem;
-      user-select: none;
-    }
-    .city {
-      flex-shrink: 0;
+      margin: 1rem 0;
     }
     .plane-path {
       position: relative;
-      flex-grow: 1;
+      width: 150px;
       height: 5px;
       background: #ff69b4;
-      border-radius: 2.5px;
-      overflow: visible;
+      border-radius: 3px;
     }
     .plane {
       position: absolute;
@@ -163,67 +102,72 @@
       animation: flyRight 6s linear infinite;
     }
     @keyframes flyRight {
-      0% { left: 0; transform: rotate(0deg); }
-      50% { transform: rotate(10deg); }
-      100% { left: calc(100% - 24px); transform: rotate(0deg); }
+      0% { left: 0; transform: rotate(0); }
+      100% { left: 100%; transform: rotate(0); }
+    }
+    .lyrics {
+      margin-top: 2rem;
+      font-size: 1rem;
+      color: #ffe0eb;
     }
   </style>
 </head>
 <body>
   <video autoplay muted loop>
     <source src="video.M4V" type="video/mp4" />
+    Your browser does not support the video tag.
   </video>
 
   <div class="overlay">
-    <img src="PICTURE.JPEG" alt="My Love" class="slideshow" id="slideshow-img" />
-    
+    <img src="PICTURE.JPEG" alt="My Love" class="slideshow" />
     <h1>Counting down to you, my pink heart 💗</h1>
 
-    <div class="travel-container" aria-label="Travel from Cape Town to Johannesburg">
-      <div class="city">Cape Town</div>
-      <div class="plane-path">
-        <div class="plane" aria-hidden="true"></div>
-      </div>
-      <div class="city">Johannesburg</div>
+    <div class="travel-container">
+      <div>Cape Town</div>
+      <div class="plane-path"><div class="plane"></div></div>
+      <div>Johannesburg</div>
     </div>
 
     <div class="countdown" id="timer">Loading...</div>
-    <div class="message">
-      Every moment without you feels longer than the last. I can't wait to hold you again.
-    </div>
-    <div class="now-playing">🎶 Now Playing: “Hrs and Hrs” – For My Pink Heart 💖</div>
+    <div class="message">Every moment without you feels longer than the last. I can't wait to hold you again.</div>
+
     <div class="custom-player">
       <img src="PICTURE.JPEG" alt="cover" />
       <audio controls autoplay loop>
         <source src="hrs-and-hrs.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
       </audio>
+    </div>
+
+    <div class="lyrics">
+      <p>"You're not just my love, you're my peace."</p>
+      <p>"I knew this was it when I met you."</p>
+      <p>"I pray for a love like ours every night for hours."</p>
     </div>
   </div>
 
-  <div class="note" style="left:10%; top:90%;">🎵</div>
-  <div class="note" style="left:30%; top:95%;">💖</div>
-  <div class="note" style="left:60%; top:92%;">🎶</div>
-  <div class="note" style="left:80%; top:94%;">💘</div>
-
-  <div class="lyric" style="top: 10%; left: 5%; animation-delay: 0s;">You're the reason I believe in love again</div>
-  <div class="lyric" style="top: 20%; left: 70%; animation-delay: 6s;">When I met you, I knew this was it</div>
-  <div class="lyric" style="top: 35%; left: 40%; animation-delay: 12s;">You're not just my love, you're my peace</div>
-  <div class="lyric" style="top: 50%; left: 20%; animation-delay: 18s;">Layin' on your chest for hours</div>
-  <div class="lyric" style="top: 65%; left: 75%; animation-delay: 24s;">You give me a superpower</div>
-  <div class="lyric" style="top: 80%; left: 10%; animation-delay: 30s;">I could do this for hours</div>
-
   <script>
-    const countdownEl = document.getElementById("timer");
-
     function updateCountdown() {
       const target = new Date("June 4, 2025 13:00:00").getTime();
       const now = new Date().getTime();
-      const gap = target - now;
+      const diff = target - now;
 
-      const d = Math.floor(gap / (1000 * 60 * 60 * 24));
-      const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((gap % (1000 * 60)) / 1000);
+      if (diff <= 0) {
+        document.getElementById("timer").innerHTML = "She's back! 💖";
+        return;
+      }
 
-      if (gap > 0) {
-        countdownEl.innerHTML = `${d}d ${h}h ${m}m ${s
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("timer").innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
