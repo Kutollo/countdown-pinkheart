@@ -1,159 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Countdown to You 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Countdown 💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <style>
-    * {margin: 0; padding: 0; box-sizing: border-box;}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body, html {
       height: 100%;
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
-      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff0f5;
+      color: #4b2c4e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       overflow: hidden;
-      background: #000;
-      position: relative;
     }
-    video {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      object-fit: cover;
-      z-index: -2;
-    }
-    .overlay {
-      position: relative;
-      z-index: 2;
+    .container {
+      text-align: center;
+      max-width: 800px;
       padding: 2rem;
-      background: rgba(0, 0, 0, 0.5);
-      height: 100%;
-      overflow-y: auto;
     }
     h1 {
-      font-size: 2.5rem;
+      font-family: 'Sacramento', cursive;
+      font-size: 3rem;
+      color: #d63384;
       margin-bottom: 1rem;
+    }
+    .slideshow {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      border: 4px dashed #d63384;
+      overflow: hidden;
+      margin: 1rem auto;
+      box-shadow: 0 0 15px #fbb1cf;
+      animation: spin 10s infinite linear;
+    }
+    .slideshow img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0); }
+      100% { transform: rotate(360deg); }
     }
     .countdown {
       font-size: 2rem;
       font-weight: bold;
-      margin: 1rem 0;
+      margin: 1.5rem 0;
     }
     .message {
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
     }
-    .custom-player {
-      background: #fff0f5;
-      border-radius: 20px;
-      padding: 10px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 0 10px #ffb6c1;
-      margin-bottom: 1rem;
-    }
-    .custom-player img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
-    .slideshow {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      border: 4px solid white;
-      object-fit: cover;
-      margin-bottom: 1rem;
-      animation: pulse 4s infinite;
-    }
-    @keyframes pulse {
-      0%,100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    .travel-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      color: #ffb6c1;
-      font-weight: 600;
-      font-size: 1.1rem;
-      margin: 1rem 0;
-    }
-    .plane-path {
-      position: relative;
-      width: 150px;
-      height: 5px;
-      background: #ff69b4;
-      border-radius: 3px;
-    }
-    .plane {
-      position: absolute;
-      top: -12px;
-      left: 0;
-      width: 24px;
-      height: 24px;
-      background: url('data:image/svg+xml;utf8,<svg fill="%23ff69b4" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>') no-repeat center center;
-      background-size: contain;
-      animation: flyRight 6s linear infinite;
-    }
-    @keyframes flyRight {
-      0% { left: 0; transform: rotate(0); }
-      100% { left: 100%; transform: rotate(0); }
+    .audio {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     }
     .lyrics {
-      margin-top: 2rem;
       font-size: 1rem;
-      color: #ffe0eb;
+      margin-top: 2rem;
+      color: #8a3b65;
+      font-style: italic;
+    }
+    video.bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.3;
     }
   </style>
 </head>
 <body>
-  <video autoplay muted loop>
-    <source src="video.M4V" type="video/mp4" />
-    Your browser does not support the video tag.
+  <video autoplay muted loop class="bg-video">
+    <source src="video.M4V" type="video/mp4">
   </video>
-
-  <div class="overlay">
-    <img src="PICTURE.JPEG" alt="My Love" class="slideshow" />
-    <h1>Counting down to you, my pink heart 💗</h1>
-
-    <div class="travel-container">
-      <div>Cape Town</div>
-      <div class="plane-path"><div class="plane"></div></div>
-      <div>Johannesburg</div>
+  <div class="container">
+    <h1>Counting Down to You 💖</h1>
+    <div class="slideshow">
+      <img src="PICTURE.JPEG" alt="Her Beautiful Face" />
     </div>
-
     <div class="countdown" id="timer">Loading...</div>
-    <div class="message">Every moment without you feels longer than the last. I can't wait to hold you again.</div>
+    <div class="message">Every heartbeat is a whisper of how much I miss you. I can’t wait to hold you close again.</div><div class="audio">
+  <audio controls autoplay loop>
+    <source src="hrs-and-hrs.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</div>
 
-    <div class="custom-player">
-      <img src="PICTURE.JPEG" alt="cover" />
-      <audio controls autoplay loop>
-        <source src="hrs-and-hrs.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
-    </div>
+<div class="lyrics">
+  "I knew this was it when I met you..."<br/>
+  "You’re not just my love, you're my peace..."<br/>
+  "Every night, I pray for this — for you."
+</div>
 
-    <div class="lyrics">
-      <p>"You're not just my love, you're my peace."</p>
-      <p>"I knew this was it when I met you."</p>
-      <p>"I pray for a love like ours every night for hours."</p>
-    </div>
-  </div>
-
-  <script>
+  </div>  <script>
     function updateCountdown() {
-      const target = new Date("June 4, 2025 13:00:00").getTime();
+      const countdownDate = new Date("June 4, 2025 13:00:00").getTime();
       const now = new Date().getTime();
-      const diff = target - now;
+      const diff = countdownDate - now;
 
       if (diff <= 0) {
-        document.getElementById("timer").innerHTML = "She's back! 💖";
+        document.getElementById("timer").innerHTML = "She's finally here 💕";
         return;
       }
 
@@ -162,12 +118,10 @@
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-      document.getElementById("timer").innerHTML =
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      document.getElementById("timer").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
-  </script>
-</body>
+  </script></body>
 </html>
