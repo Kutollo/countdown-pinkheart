@@ -163,7 +163,7 @@ h1 {
     const confettiCanvas = document.getElementById("confetti-canvas");
 
     // Static last seen date/time (Feb 3, 2025, 7:00 AM)
-    const lastSeenDate = new Date(2025, 1, 3, 7, 0, 0); // Months are 0-based (1 = Feb)
+    const lastSeenDate = new Date(2025, 1, 3, 7, 0, 0); // Month is zero-based
 
     // Countdown target: June 4, 2025, 2:00 PM
     const countdownTarget = new Date(2025, 5, 4, 14, 0, 0);
@@ -178,7 +178,6 @@ h1 {
       { hour: 14, min: 0, text: "You’re here now, and I’m wrapped in the warmth of your love 💘" }
     ];
 
-    // Update last seen countup (days, hours)
     function updateLastSeen() {
       const now = new Date();
       let diffMs = now - lastSeenDate;
@@ -188,7 +187,6 @@ h1 {
       lastSeen.textContent = `It’s been ${diffDays} days and ${diffHours} hours since I last saw you 💔`;
     }
 
-    // Format countdown time as: Xd Xh Xm Xs
     function formatCountdown(diffMs) {
       const d = Math.floor(diffMs / (1000 * 60 * 60 * 24));
       const h = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -197,10 +195,8 @@ h1 {
       return `${d}d ${h}h ${m}m ${s}s`;
     }
 
-    // Find message for current time on June 4
     function getScheduledMessage(now) {
       if (now.getFullYear() === 2025 && now.getMonth() === 5 && now.getDate() === 4) {
-        // Filter messages with time <= now
         const nowMinutes = now.getHours() * 60 + now.getMinutes();
         let lastMessage = "";
         for (const msg of scheduledMessages) {
@@ -212,29 +208,10 @@ h1 {
       return "Counting down to being with MyPinkHeart 💗";
     }
 
-    // Update countdown timer and message
     function updateCountdown() {
       const now = new Date();
       let diff = countdownTarget - now;
 
       if (diff <= 0) {
         timer.textContent = "0d 0h 0m 0s";
-        message.textContent = "You’re here now, and I’m wrapped in the warmth of your love 💘";
-        finalMessageContainer.classList.remove("hidden");
-        launchConfetti();
-        return;
-      }
-
-      timer.innerHTML = `Counting down to being with MyPinkHeart 💗 <strong>${formatCountdown(diff)}</strong> to go`;
-      message.textContent = getScheduledMessage(now);
-    }
-
-    // Confetti effect when countdown finishes
-    function launchConfetti() {
-      confettiCanvas.classList.remove("hidden");
-      const duration = 5000;
-      const animationEnd = Date.now() + duration;
-      const defaults = { origin: { y: 0.7 } };
-
-      function randomInRange(min, max) {
-        return Math.random() * (max - min) +
+        message.textContent
