@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Countdown to You 💖</title>
   <style>
     * {
@@ -38,81 +38,57 @@ video {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 h1 {
-  font-size: 2.7rem;
+  font-size: 2.2rem;
   margin-bottom: 1rem;
   animation: fadeIn 2s ease-in-out;
 }
 
 .countdown {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   animation: fadeIn 3s ease-in-out;
 }
 
 .message {
   font-size: 1.2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
   animation: fadeIn 4s ease-in-out;
-  max-width: 600px;
+  max-width: 90%;
 }
 
 .photo {
-  width: 220px;
-  height: 220px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   border: 4px solid white;
   object-fit: cover;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-  margin-bottom: 2rem;
-  animation: pulse 4s infinite ease-in-out;
+  margin-bottom: 1.5rem;
+  animation: heartbeat 2s infinite ease-in-out;
 }
 
-@keyframes pulse {
+@keyframes heartbeat {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }
 }
 
-.audio-controls {
-  margin-top: 1rem;
-  animation: fadeIn 5s ease-in-out;
-}
-
 .audio-controls audio {
-  width: 250px;
-  outline: none;
+  width: 240px;
   border-radius: 20px;
-  box-shadow: 0 0 10px rgba(255, 192, 203, 0.4);
-}
-
-.lyrics {
-  margin-top: 2rem;
-  font-size: 1rem;
-  max-width: 600px;
-}
-
-.lyrics span {
-  display: block;
-  opacity: 0;
-  animation: fadeLine 1s ease-in-out forwards;
-}
-
-@keyframes fadeLine {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.hidden {
-  display: none;
+  outline: none;
+  border: 2px solid #ff69b4;
+  background: rgba(255, 192, 203, 0.2);
+  box-shadow: 0 0 12px rgba(255, 105, 180, 0.6);
 }
 
 .final-message {
   font-size: 1.4rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
   color: #ffe4ec;
   animation: fadeIn 2s ease-in-out;
 }
@@ -126,7 +102,6 @@ h1 {
   background-color: #ff69b4;
   color: white;
   cursor: pointer;
-  transition: background 0.3s;
 }
 
 .replay-button:hover {
@@ -141,15 +116,14 @@ h1 {
   </style>
 </head>
 <body>
-  <!-- Background video -->
   <video autoplay muted loop>
     <source src="video.M4V" type="video/mp4" />
     Your browser does not support the video tag.
-  </video>  <!-- Overlay -->  <div class="overlay">
+  </video>  <div class="overlay">
     <img src="IMG_3614.jpg" alt="My Love" class="photo" />
     <h1>Counting down to you, my pink heart 💗</h1>
     <div class="countdown" id="timer">Loading...</div>
-    <div class="message">
+    <div class="message" id="dynamicMsg">
       I’ve missed your voice, your smile, your everything.<br>
       Every second brings me closer to seeing you again.<br>
       I’ll be waiting with all my heart 💞
@@ -160,17 +134,26 @@ h1 {
         Your browser does not support the audio element.
       </audio>
     </div>
-    <div class="lyrics" id="lyrics"></div>
     <div id="final" class="hidden">
-      <div class="final-message">She's back!!! I’m so happy you're here 💘</div>
+      <div class="final-message">You’re here now, and I’m wrapped in the warmth of your love. ❤️</div>
       <button class="replay-button" onclick="location.reload()">Replay Countdown</button>
     </div>
-  </div>  <!-- Confetti --><canvas id="confetti-canvas" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;"></canvas>
+  </div><canvas id="confetti-canvas" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;"></canvas>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>  <script>
     const countdownEl = document.getElementById("timer");
     const finalEl = document.getElementById("final");
+    const msgEl = document.getElementById("dynamicMsg");
     const confettiCanvas = document.getElementById("confetti-canvas");
+
+    const messages = [
+      { time: "07:00", text: "Good morning, my pink heart — the day is finally here. I’ve been waiting for this moment forever." },
+      { time: "08:00", text: "Wishing you a safe journey, my heart beats with yours across every mile." },
+      { time: "09:00", text: "As you check in, know that I’m already counting down to hold you close." },
+      { time: "10:55", text: "The plane takes flight, but my thoughts are already wrapped around you." },
+      { time: "12:55", text: "You’re almost home, and my heart can’t wait to welcome you." },
+      { time: "14:00", text: "You’re here now, and I’m wrapped in the warmth of your love." }
+    ];
 
     function launchConfetti() {
       confettiCanvas.classList.remove("hidden");
@@ -179,9 +162,9 @@ h1 {
     }
 
     function updateCountdown() {
-      const target = new Date("June 4, 2025 13:00:00").getTime();
-      const now = new Date().getTime();
-      const gap = target - now;
+      const now = new Date();
+      const target = new Date("June 4, 2025 14:00:00").getTime();
+      const gap = target - now.getTime();
 
       const d = Math.floor(gap / (1000 * 60 * 60 * 24));
       const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -189,32 +172,22 @@ h1 {
       const s = Math.floor((gap % (1000 * 60)) / 1000);
 
       if (gap > 0) {
-        countdownEl.innerHTML = `<strong>${d}d ${h}h ${m}m ${s}s</strong>`;
+        countdownEl.innerHTML = `<b>${d}d ${h}h ${m}m ${s}s</b>`;
       } else {
         countdownEl.innerHTML = "";
+        msgEl.classList.add("hidden");
         finalEl.classList.remove("hidden");
         launchConfetti();
         clearInterval(intervalId);
       }
+
+      const nowStr = now.toTimeString().slice(0,5);
+      messages.forEach(msg => {
+        if (nowStr === msg.time) msgEl.innerHTML = msg.text;
+      });
     }
 
     const intervalId = setInterval(updateCountdown, 1000);
     updateCountdown();
-
-    // Animated lyrics
-    const lyricsText = [
-      "Hours and hours of thinking of you...",
-      "Every heartbeat feels like a step closer",
-      "The stars whisper your name at night",
-      "And I feel your love across the distance 💖"
-    ];
-
-    const lyricsContainer = document.getElementById("lyrics");
-    lyricsText.forEach((line, i) => {
-      const span = document.createElement("span");
-      span.style.animationDelay = `${6 + i * 2}s`;
-      span.textContent = line;
-      lyricsContainer.appendChild(span);
-    });
   </script></body>
 </html>
