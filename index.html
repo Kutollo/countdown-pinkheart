@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -8,155 +9,270 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }body, html {
-  height: 100%;
-  font-family: 'Segoe UI', sans-serif;
-  color: white;
-  text-align: center;
-  overflow: hidden;
-}
+    }
 
-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -2;
-}
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+      background: black;
+    }
 
-.overlay {
-  height: 100%;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.55);
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 1rem;
-}
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+    }
 
-h1 {
-  font-size: 2rem;
-  margin-top: 1rem;
-  animation: fadeIn 2s ease-in-out;
-}
+    .overlay {
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
 
-.photo {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  border: 4px solid white;
-  object-fit: cover;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-  margin: 1rem 0;
-  animation: heartbeat 3s infinite ease-in-out;
-}
+    h1 {
+      font-size: 2.7rem;
+      margin-bottom: 1rem;
+      animation: fadeIn 2s ease-in-out;
+    }
 
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.06); }
-}
+    .countup {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      animation: fadeIn 2s ease-in-out;
+    }
 
-.countup, .countdown {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin: 0.5rem 0;
-  animation: fadeIn 2s ease-in-out;
-}
+    .message {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+      line-height: 1.5;
+      animation: fadeIn 3s ease-in-out;
+    }
 
-.message {
-  font-size: 1rem;
-  margin: 1rem;
-  animation: fadeIn 3s ease-in-out;
-  max-width: 600px;
-}
+    #countdown-message {
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
 
-.lyrics {
-  font-size: 1rem;
-  max-width: 80%;
-  margin: 1rem auto;
-  opacity: 0;
-  animation: fadeLyrics 20s infinite;
-  animation-delay: 10s;
-}
+    .bold-timer {
+      font-weight: bold;
+    }
 
-@keyframes fadeLyrics {
-  0%, 100% { opacity: 0; }
-  10%, 90% { opacity: 1; }
-}
+    .photo {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 4px solid white;
+      object-fit: cover;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      margin-bottom: 2rem;
+      animation: pulse 4s infinite ease-in-out;
+    }
 
-.audio-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: hotpink;
-  border: none;
-  border-radius: 25px;
-  color: white;
-  font-size: 0.95rem;
-  padding: 12px 20px;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
-  z-index: 5;
-  animation: pulse 3s infinite;
-}
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
+    .audio-controls {
+      margin-top: 1rem;
+      animation: fadeIn 5s ease-in-out;
+      display: flex;
+      justify-content: center;
+    }
 
-.hidden {
-  display: none;
-}
+    .audio-controls audio {
+      width: 250px;
+      outline: none;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(255, 192, 203, 0.4);
+    }
 
-.final-message {
-  font-size: 1.4rem;
-  margin-top: 1.5rem;
-  color: #ffe4ec;
-  animation: fadeIn 2s ease-in-out;
-}
+    .hidden {
+      display: none;
+    }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    .final-message {
+      font-size: 1.4rem;
+      margin-top: 2rem;
+      color: #ffe4ec;
+      animation: fadeIn 2s ease-in-out;
+    }
 
+    .replay-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #ff69b4;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .replay-button:hover {
+      background-color: #ff1493;
+    }
+
+    .lyrics {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      color: #ffc0cbdd;
+      font-size: 1.1rem;
+      font-style: italic;
+      text-align: center;
+      animation: fadeInOut 8s ease-in-out infinite;
+      pointer-events: none;
+      user-select: none;
+      max-width: 90vw;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    button#play-button {
+      margin: 0 auto;
+      padding: 10px 25px;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      border: none;
+      background: #ff69b4;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff69b4;
+      transition: background-color 0.3s ease;
+      display: block;
+    }
+
+    button#play-button:hover {
+      background-color: #ff1493;
+    }
   </style>
 </head>
 <body>
-  <video autoplay muted loop playsinline>
+  <!-- Background video -->
+  <video autoplay muted loop>
     <source src="video.M4V" type="video/mp4" />
     Your browser does not support the video tag.
-  </video>  <div class="overlay">
-    <div class="countup" id="lastSeen">It’s been 115 days and 6 hours since I last saw you 💔</div>
+  </video>
+
+  <!-- Overlay -->
+  <div class="overlay">
+    <div class="countup" id="countup">Loading...</div>
     <img src="PICTURE.JPEG" alt="My Love" class="photo" />
-    <div class="countdown" id="timer">Counting down to being with MyPinkHeart 💗 Counting down to MyPinkHeart 💗 6d 0h 31m 28s to go".replace("Counting down to MyPinkHeart 💗 </div>
-    <div class="message" id="message">I’ve missed your voice, your smile, your everything. Every second brings me closer to seeing you again. I’ll be waiting with all my heart 💞</div>
-    <div class="lyrics" id="lyrics">I could do this for hours and hours and hours...</div>
-    <div id="final" class="hidden">
-      <div class="final-message">You’re here now, and I’m wrapped in the warmth of your love 💘</div>
+    
+    <div id="countdown-message" class="message">
+      Counting down to being with MyPinkHeart 💗 <span id="timer" class="bold-timer">Loading...</span> to go
     </div>
-  </div><button class="audio-button" id="playBtn">Wanna hear a secret? Tap me 🩵🎶</button> <audio id="song" loop> <source src="hrs-and-hrs.mp3" type="audio/mpeg" /> </audio>
 
-<canvas id="confetti-canvas" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;"></canvas>
+    <div class="message" id="love-message">
+      I’ve missed your voice, your smile, your everything.<br>
+      Every second brings me closer to seeing you again.<br>
+      I’ll be waiting with all my heart 💞
+    </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>  <script>
-    const playBtn = document.getElementById("playBtn");
-    const song = document.getElementById("song");
+    <button id="play-button">Wanna hear a secret? Tap me 🩵🎶</button>
 
-    playBtn.addEventListener("click", () => {
-      song.play().then(() => {
-        playBtn.innerText = "Now playing your favorite song ❤️";
-      }).catch(() => {
-        playBtn.innerText = "Tap me again, baby 😘";
-      });
-    });
-  </script></body>
-</html>
+    <div class="audio-controls hidden" id="audio-container">
+      <audio id="audio" loop>
+        <source src="hrs-and-hrs.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="lyrics" id="lyrics" style="display:none;">
+      I could do this for hours and hours and hours...
+    </div>
+
+    <div id="final" class="hidden">
+      <div class="final-message">She's back!!! I’m so happy you're here 💘</div>
+      <button class="replay-button" onclick="location.reload()">Replay Countdown</button>
+    </div>
+  </div>
+
+  <!-- Confetti -->
+  <canvas id="confetti-canvas" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    const countdownEl = document.getElementById("timer");
+    const finalEl = document.getElementById("final");
+    const confettiCanvas = document.getElementById("confetti-canvas");
+    const countupEl = document.getElementById("countup");
+    const playButton = document.getElementById("play-button");
+    const audioContainer = document.getElementById("audio-container");
+    const audio = document.getElementById("audio");
+    const lyrics = document.getElementById("lyrics");
+
+    // Countdown target date (2 PM June 4, 2025)
+    const targetDate = new Date("June 4, 2025 14:00:00").getTime();
+
+    // Countup start date (last time saw her)
+    const countupDate = new Date("February 3, 2025 07:00:00").getTime();
+
+    function launchConfetti() {
+      confettiCanvas.classList.remove("hidden");
+      const confettiInstance = confetti.create(confettiCanvas, { resize: true });
+      confettiInstance({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
+    }
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const gap = targetDate - now;
+
+      const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+      const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((gap % (1000 * 60)) / 1000);
+
+      if (gap > 0) {
+        countdownEl.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
+      } else {
+        countdownEl.innerHTML = "";
+        finalEl.classList.remove("hidden");
+        launchConfetti();
+        clearInterval(intervalId);
+      }
+    }
+
+    function updateCountup() {
+      const now = new Date().getTime();
+      const diff = now - countupDate;
+
+      if(diff < 0){
+        countupEl.innerText = "Counting days and hours...";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+      countupEl.innerText = `It’s been ${days} days and ${hours} hours
