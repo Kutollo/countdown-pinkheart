@@ -1,10 +1,10 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For My Pink Heart 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Countdown to You 💖</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
     * {
       margin: 0;
       padding: 0;
@@ -15,19 +15,40 @@
       font-family: 'Segoe UI', sans-serif;
       color: white;
       text-align: center;
-      background: linear-gradient(to top right, #2e003e, #ff66cc);
-      overflow-x: hidden;
+      overflow: hidden;
     }
-    header {
-      padding: 1.5rem;
-      font-size: 1.8rem;
-      animation: fadeIn 2s ease-in-out;
+
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
     }
-    .count-section {
+
+    .overlay {
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
       margin-top: 1rem;
-      font-size: 1.1rem;
       animation: fadeIn 2s ease-in-out;
     }
+
     .photo {
       width: 180px;
       height: 180px;
@@ -35,44 +56,77 @@
       border: 4px solid white;
       object-fit: cover;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-      margin: 1.5rem auto;
+      margin: 1rem 0;
       animation: heartbeat 3s infinite ease-in-out;
     }
-    .lyrics {
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.2rem;
-      color: #fff0f5;
-      max-width: 85%;
-      margin: 2rem auto;
-      line-height: 1.7;
-      white-space: pre-wrap;
-    }
-    .letter {
-      background: rgba(255,255,255,0.1);
-      border-radius: 15px;
-      padding: 1.5rem;
-      margin: 2rem auto;
-      max-width: 600px;
-      font-style: italic;
-    }
-    .gallery {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin: 2rem auto;
-    }
-    .gallery img {
-      width: 100px;
-      height: 100px;
-      border-radius: 10px;
-      object-fit: cover;
-      box-shadow: 0 0 10px rgba(255,255,255,0.3);
-    }
+
     @keyframes heartbeat {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.06); }
     }
+
+    .countup, .countdown {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 0.5rem 0;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .message {
+      font-size: 1rem;
+      margin: 1rem;
+      animation: fadeIn 3s ease-in-out;
+      max-width: 600px;
+    }
+
+    .lyrics {
+      font-size: 1rem;
+      max-width: 80%;
+      margin: 1rem auto;
+      opacity: 0;
+      animation: fadeLyrics 20s infinite;
+      animation-delay: 10s;
+      color: #ccc;
+    }
+
+    @keyframes fadeLyrics {
+      0%, 100% { opacity: 0; }
+      10%, 90% { opacity: 1; }
+    }
+
+    .audio-button {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: hotpink;
+      border: none;
+      border-radius: 25px;
+      color: white;
+      font-size: 0.95rem;
+      padding: 12px 20px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+      z-index: 5;
+      animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .final-message {
+      font-size: 1.4rem;
+      margin-top: 1.5rem;
+      color: #ffe4ec;
+      animation: fadeIn 2s ease-in-out;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
@@ -80,53 +134,87 @@
   </style>
 </head>
 <body>
-  <header>My Pink Heart 💗</header>  <div class="count-section" id="lastSeen"></div>
-  <img src="PICTURE.JPEG" alt="My Love" class="photo" />
-  <div class="count-section" id="nextVisit"></div>  <div class="letter">
-    I know you don't usually like this kind of stuff, but I wanted to remind you how deeply I love you.
-    Your laugh, your eyes, the way you say my name. You're everything I prayed for. This is my love for you—in hours and hours.
-  </div>  <div class="lyrics">
-Yours, mine, ours<br>
-I could do this for hours<br>
-Sit and talk to you for hours<br>
-I wanna give you your flowers<br>
-And some champagne showers...<br>
-But it's me that gets devoured<br>
-Ooh, when you do what you do, I'm empowered<br>
-You give me a superpower<br>
-Together the world could be ours...<br><br>
-(And more. Play the song, read the rest with me 💞)
-  </div>  <div class="gallery">
-    <img src="img1.jpg" alt="Memory 1">
-    <img src="img2.jpg" alt="Memory 2">
-    <img src="img3.jpg" alt="Memory 3">
-  </div>  <audio id="song" loop>
+
+  <video autoplay muted loop playsinline>
+    <source src="video.M4V" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="overlay">
+    <div class="countup" id="lastSeen">Loading...</div>
+    <h1>My Love</h1>
+    <img src="PICTURE.JPEG" alt="My Love" class="photo" />
+    <div class="countdown" id="countdownTimer">Loading countdown...</div>
+    <div class="message" id="message">Counting down to being with MyPinkHeart 💗</div>
+    <div class="lyrics" id="lyrics">I could do this for hours and hours and hours...</div>
+    <div id="final" class="hidden">
+      <div class="final-message">You’re here now, and I’m wrapped in the warmth of your love 💘</div>
+    </div>
+  </div>
+
+  <button class="audio-button" id="playBtn">Wanna hear a secret? Tap me 🩵🎶</button>
+  <audio id="song" loop>
     <source src="hrs-and-hrs.mp3" type="audio/mpeg" />
-  </audio>  <script>
-    const song = document.getElementById("song");
-    song.play().catch(() => {});
+  </audio>
 
-    const lastSeenDate = new Date('2025-02-03T07:00:00');
-    const nextDate = new Date('2025-06-04T07:00:00');
+<script>
+  const lastSeenEl = document.getElementById('lastSeen');
+  const countdownEl = document.getElementById('countdownTimer');
+  const messageEl = document.getElementById('message');
+  const playBtn = document.getElementById('playBtn');
+  const song = document.getElementById('song');
 
-    function updateTime() {
-      const now = new Date();
-      const diff1 = Math.floor((now - lastSeenDate) / 1000);
-      const days1 = Math.floor(diff1 / 86400);
-      const hours1 = Math.floor((diff1 % 86400) / 3600);
-      document.getElementById("lastSeen").textContent = `It's been ${days1} days and ${hours1} hours since I last held you 💔`;
+  // Last seen fixed date: Feb 3, 2025 7:00 AM
+  const lastSeenDate = new Date(2025, 1, 3, 7, 0, 0); // Months 0-based
 
-      const diff2 = Math.floor((nextDate - now) / 1000);
-      if (diff2 > 0) {
-        const days2 = Math.floor(diff2 / 86400);
-        const hours2 = Math.floor((diff2 % 86400) / 3600);
-        const mins2 = Math.floor((diff2 % 3600) / 60);
-        document.getElementById("nextVisit").textContent = `Counting down to seeing you again 💖 ${days2}d ${hours2}h ${mins2}m to go`;
-      } else {
-        document.getElementById("nextVisit").textContent = `You're here now. And I never want to let you go 💘`;
-      }
+  // Countdown target: June 4, 2025 2:00 PM
+  const countdownTarget = new Date(2025, 5, 4, 14, 0, 0);
+
+  // Format countdown timer string
+  function formatDiff(ms) {
+    const days = Math.floor(ms / (1000*60*60*24));
+    const hours = Math.floor((ms % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((ms % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((ms % (1000*60)) / 1000);
+    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  // Update timers every second
+  function updateTimers() {
+    const now = new Date();
+
+    // Last Seen - time since last seen date
+    let diffLastSeen = now - lastSeenDate;
+    if(diffLastSeen < 0) diffLastSeen = 0;
+    const daysLastSeen = Math.floor(diffLastSeen / (1000*60*60*24));
+    const hoursLastSeen = Math.floor((diffLastSeen % (1000*60*60*24)) / (1000*60*60));
+    lastSeenEl.textContent = `It’s been ${daysLastSeen} days and ${hoursLastSeen} hours since I last saw you 💔`;
+
+    // Countdown to target
+    const diffCountdown = countdownTarget - now;
+    if(diffCountdown > 0) {
+      countdownEl.textContent = formatDiff(diffCountdown);
+      messageEl.textContent = "Counting down to being with MyPinkHeart 💗";
+    } else {
+      countdownEl.textContent = "0d 0h 0m 0s";
+      messageEl.textContent = "You’re here now, and I’m wrapped in the warmth of your love 💘";
     }
-    setInterval(updateTime, 1000);
-    updateTime();
-  </script></body>
+  }
+
+  updateTimers();
+  setInterval(updateTimers, 1000);
+
+  // Audio play/pause toggle button
+  playBtn.addEventListener("click", () => {
+    if(song.paused) {
+      song.play();
+      playBtn.textContent = "Pause the secret 🩵🎶";
+    } else {
+      song.pause();
+      playBtn.textContent = "Wanna hear a secret? Tap me 🩵🎶";
+    }
+  });
+</script>
+
+</body>
 </html>
