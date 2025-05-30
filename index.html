@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hours & Hours With You 💘</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For My Pink Heart 💖</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
     * {
@@ -11,248 +10,123 @@
       padding: 0;
       box-sizing: border-box;
     }
-
     body, html {
       height: 100%;
       font-family: 'Segoe UI', sans-serif;
       color: white;
       text-align: center;
-      overflow: hidden;
-      background: black;
+      background: linear-gradient(to top right, #2e003e, #ff66cc);
+      overflow-x: hidden;
     }
-
-    video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: -2;
+    header {
+      padding: 1.5rem;
+      font-size: 1.8rem;
+      animation: fadeIn 2s ease-in-out;
     }
-
-    .overlay {
-      height: 100%;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.55);
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      padding: 1rem;
+    .count-section {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      animation: fadeIn 2s ease-in-out;
     }
-
     .photo {
       width: 180px;
       height: 180px;
       border-radius: 50%;
       border: 4px solid white;
       object-fit: cover;
-      box-shadow: 0 0 25px rgba(255, 192, 203, 0.8);
-      margin: 1rem 0;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      margin: 1.5rem auto;
       animation: heartbeat 3s infinite ease-in-out;
     }
-
+    .lyrics {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.2rem;
+      color: #fff0f5;
+      max-width: 85%;
+      margin: 2rem auto;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+    .letter {
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin: 2rem auto;
+      max-width: 600px;
+      font-style: italic;
+    }
+    .gallery {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 2rem auto;
+    }
+    .gallery img {
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
     @keyframes heartbeat {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.06); }
     }
-
-    .countup, .countdown {
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin: 0.5rem 0;
-      animation: fadeIn 2s ease-in-out;
-    }
-
-    .lyrics {
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.1rem;
-      color: #ffccff;
-      max-width: 90%;
-      margin: 2rem auto 1rem;
-      opacity: 0;
-      transition: opacity 2s ease-in-out;
-      min-height: 2rem;
-    }
-
-    .audio-button {
-      position: fixed;
-      bottom: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: hotpink;
-      border: none;
-      border-radius: 25px;
-      color: white;
-      font-size: 0.95rem;
-      padding: 12px 20px;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
-      z-index: 5;
-      animation: pulse 3s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    .hearts {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .hearts span {
-      position: absolute;
-      display: block;
-      color: pink;
-      font-size: 24px;
-      animation: float 8s linear infinite;
-      opacity: 0.7;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(100vh) scale(0.5);
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) scale(1.2);
-        opacity: 0;
-      }
-    }
-
   </style>
 </head>
 <body>
-  <video autoplay muted loop playsinline>
-    <source src="video.M4V" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-
-  <div class="overlay">
-    <div class="countup" id="lastSeen">It’s been ... since I last saw you 💔</div>
-    <img src="PICTURE.JPEG" alt="My Love" class="photo" />
-    <div class="countdown" id="timer">Counting down to being with MyPinkHeart 💗</div>
-    <div class="lyrics" id="lyrics"></div>
-    <button class="audio-button" id="playBtn">Play our song 💗</button>
-  </div>
-
-  <div class="hearts" id="hearts"></div>
-
-  <audio id="song" loop>
+  <header>My Pink Heart 💗</header>  <div class="count-section" id="lastSeen"></div>
+  <img src="PICTURE.JPEG" alt="My Love" class="photo" />
+  <div class="count-section" id="nextVisit"></div>  <div class="letter">
+    I know you don't usually like this kind of stuff, but I wanted to remind you how deeply I love you.
+    Your laugh, your eyes, the way you say my name. You're everything I prayed for. This is my love for you—in hours and hours.
+  </div>  <div class="lyrics">
+Yours, mine, ours<br>
+I could do this for hours<br>
+Sit and talk to you for hours<br>
+I wanna give you your flowers<br>
+And some champagne showers...<br>
+But it's me that gets devoured<br>
+Ooh, when you do what you do, I'm empowered<br>
+You give me a superpower<br>
+Together the world could be ours...<br><br>
+(And more. Play the song, read the rest with me 💞)
+  </div>  <div class="gallery">
+    <img src="img1.jpg" alt="Memory 1">
+    <img src="img2.jpg" alt="Memory 2">
+    <img src="img3.jpg" alt="Memory 3">
+  </div>  <audio id="song" loop>
     <source src="hrs-and-hrs.mp3" type="audio/mpeg" />
-  </audio>
+  </audio>  <script>
+    const song = document.getElementById("song");
+    song.play().catch(() => {});
 
-  <script>
-    // COUNTUP
-    const lastSeen = new Date("2024-02-05T12:00:00"); // Update with actual last seen time
-    const countdownDate = new Date("2025-06-04T07:00:00"); // Update to when you’ll see her
+    const lastSeenDate = new Date('2025-02-03T07:00:00');
+    const nextDate = new Date('2025-06-04T07:00:00');
 
-    function updateTimers() {
+    function updateTime() {
       const now = new Date();
+      const diff1 = Math.floor((now - lastSeenDate) / 1000);
+      const days1 = Math.floor(diff1 / 86400);
+      const hours1 = Math.floor((diff1 % 86400) / 3600);
+      document.getElementById("lastSeen").textContent = `It's been ${days1} days and ${hours1} hours since I last held you 💔`;
 
-      const diff = now - lastSeen;
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      document.getElementById("lastSeen").innerText = `It’s been ${days} days and ${hours} hours since I last saw you 💔`;
-
-      const timeLeft = countdownDate - now;
-      if (timeLeft > 0) {
-        const d = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        const h = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
-        const m = Math.floor((timeLeft / (1000 * 60)) % 60);
-        const s = Math.floor((timeLeft / 1000) % 60);
-        document.getElementById("timer").innerText = `Counting down to being with MyPinkHeart 💗 ${d}d ${h}h ${m}m ${s}s to go`;
+      const diff2 = Math.floor((nextDate - now) / 1000);
+      if (diff2 > 0) {
+        const days2 = Math.floor(diff2 / 86400);
+        const hours2 = Math.floor((diff2 % 86400) / 3600);
+        const mins2 = Math.floor((diff2 % 3600) / 60);
+        document.getElementById("nextVisit").textContent = `Counting down to seeing you again 💖 ${days2}d ${hours2}h ${mins2}m to go`;
       } else {
-        document.getElementById("timer").innerText = `You're finally here 💞`;
+        document.getElementById("nextVisit").textContent = `You're here now. And I never want to let you go 💘`;
       }
     }
-    setInterval(updateTimers, 1000);
-    updateTimers();
-
-    // LYRICS
-    const lyrics = [
-      "Yours, mine, ours",
-      "I could do this for hours",
-      "Sit and talk to you for hours",
-      "I wanna give you your flowers",
-      "And some champagne showers",
-      "Order shrimp and lobster towers",
-      "But it's me that gets devoured",
-      "When you do what you do, I'm empowered",
-      "You give me a superpower",
-      "Together the world could be ours",
-      "You sit me up on the counter",
-      "Instantly, it's thunder showers",
-      "Stormin' for a couple hours",
-      "When we finished, take a shower",
-      "Usually don't like nobody",
-      "Then I met you",
-      "I knew this was it",
-      "I've never been in love like this",
-      "A love like ours",
-      "I pray for it on my knees",
-      "Every night for some hours",
-      "Makin' love to you for hours",
-      "Tellin' you jokes for hours",
-      "Holdin' you close for hours",
-      "Hours and hours",
-    ];
-
-    let lyricIndex = 0;
-    const lyricsEl = document.getElementById("lyrics");
-    function showNextLyric() {
-      lyricsEl.style.opacity = 0;
-      setTimeout(() => {
-        lyricsEl.innerText = lyrics[lyricIndex];
-        lyricsEl.style.opacity = 1;
-        lyricIndex = (lyricIndex + 1) % lyrics.length;
-      }, 1000);
-    }
-    setInterval(showNextLyric, 5000);
-    showNextLyric();
-
-    // MUSIC BUTTON
-    const playBtn = document.getElementById("playBtn");
-    const song = document.getElementById("song");
-
-    playBtn.addEventListener("click", () => {
-      song.play().then(() => {
-        playBtn.innerText = "Now playing 💞";
-      }).catch(() => {
-        playBtn.innerText = "Try tapping again 💗";
-      });
-    });
-
-    // Floating hearts
-    const heartsContainer = document.getElementById("hearts");
-    function createHeart() {
-      const heart = document.createElement("span");
-      heart.innerHTML = "💖";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 10 + 20 + "px";
-      heart.style.animationDuration = Math.random() * 5 + 4 + "s";
-      heartsContainer.appendChild(heart);
-      setTimeout(() => heart.remove(), 9000);
-    }
-    setInterval(createHeart, 500);
-  </script>
-</body>
+    setInterval(updateTime, 1000);
+    updateTime();
+  </script></body>
 </html>
