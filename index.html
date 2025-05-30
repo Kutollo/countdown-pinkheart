@@ -1,166 +1,258 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Love Countdown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hours & Hours With You 💘</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; font-family: 'Segoe UI', sans-serif; background: black; color: white; overflow: hidden; text-align: center; }video.bg-video {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-.overlay {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);
-  display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 1rem;
-}
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+      background: black;
+    }
 
-h1 { font-size: 2rem; margin-top: 1rem; animation: fadeIn 2s ease-in-out; }
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+    }
 
-.photo {
-  width: 160px; height: 160px; border-radius: 50%; border: 4px solid white; margin: 1rem 0;
-  object-fit: cover; box-shadow: 0 0 20px rgba(255,255,255,0.4); animation: heartbeat 3s infinite;
-}
+    .overlay {
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1rem;
+    }
 
-.countup, .countdown {
-  font-size: 1.2rem; font-weight: bold; margin: 0.5rem 0; animation: fadeIn 2s ease-in-out;
-}
+    .photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 4px solid white;
+      object-fit: cover;
+      box-shadow: 0 0 25px rgba(255, 192, 203, 0.8);
+      margin: 1rem 0;
+      animation: heartbeat 3s infinite ease-in-out;
+    }
 
-.message {
-  font-size: 1rem; margin: 1rem; max-width: 600px; animation: fadeIn 3s ease-in-out;
-}
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
 
-.lyrics {
-  font-family: 'Dancing Script', cursive; font-size: 1.1rem; color: #ffccff;
-  position: fixed; bottom: 1rem; width: 100%; text-align: center; opacity: 0; animation: fadeLyrics 20s infinite;
-}
+    .countup, .countdown {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 0.5rem 0;
+      animation: fadeIn 2s ease-in-out;
+    }
 
-.audio-button {
-  position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%);
-  background: hotpink; color: white; border: none; padding: 12px 20px;
-  border-radius: 25px; cursor: pointer; z-index: 10; animation: pulse 3s infinite;
-}
+    .lyrics {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.1rem;
+      color: #ffccff;
+      max-width: 90%;
+      margin: 2rem auto 1rem;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+      min-height: 2rem;
+    }
 
-canvas#confetti-canvas {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 5;
-}
+    .audio-button {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: hotpink;
+      border: none;
+      border-radius: 25px;
+      color: white;
+      font-size: 0.95rem;
+      padding: 12px 20px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+      z-index: 5;
+      animation: pulse 3s infinite;
+    }
 
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
+    .hearts {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-@keyframes fadeLyrics {
-  0%, 100% { opacity: 0; }
-  10%, 90% { opacity: 1; }
-}
+    .hearts span {
+      position: absolute;
+      display: block;
+      color: pink;
+      font-size: 24px;
+      animation: float 8s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
 
   </style>
 </head>
 <body>
-  <video class="bg-video" autoplay muted loop playsinline>
-    <source src="video.M4V" type="video/mp4">
-  </video>  <div class="overlay">
-    <h1>Counting Down to Our Moment 💞</h1>
+  <video autoplay muted loop playsinline>
+    <source src="video.M4V" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="overlay">
+    <div class="countup" id="lastSeen">It’s been ... since I last saw you 💔</div>
     <img src="PICTURE.JPEG" alt="My Love" class="photo" />
-    <div class="countup" id="lastSeen"></div>
-    <div class="countdown" id="timer"></div>
-    <div class="message" id="message"></div>
-    <button class="audio-button" id="playBtn">Wanna hear a secret? Tap me 🩵🎶</button>
-    <div class="lyrics" id="lyrics">I could do this for hours and hours and hours...</div>
-  </div>  <audio id="song" loop>
-    <source src="hrs-and-hrs.mp3" type="audio/mpeg">
+    <div class="countdown" id="timer">Counting down to being with MyPinkHeart 💗</div>
+    <div class="lyrics" id="lyrics"></div>
+    <button class="audio-button" id="playBtn">Play our song 💗</button>
+  </div>
+
+  <div class="hearts" id="hearts"></div>
+
+  <audio id="song" loop>
+    <source src="hrs-and-hrs.mp3" type="audio/mpeg" />
   </audio>
-  <canvas id="confetti-canvas" class="hidden"></canvas>  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>  <script>
-    const lastSeenDate = new Date(2025, 1, 3, 15, 0, 0); // example date
-    const countdownTarget = new Date(2025, 5, 4, 7, 0, 0); // June 4, 7am
-    const messageStart = new Date(2025, 5, 4, 7, 0, 0);
-    const hourlyMessages = [
-      "Good morning my pink heart 💗", 
-      "Hope you woke up smiling today",
-      "I bet you're on the way to the airport...", 
-      "Soon you'll be boarding, butterflies in my chest",
-      "Your flight must be taking off now 💕",
-      "Every cloud you pass brings us closer",
-      "Almost here now. I’m waiting. I love you."
-    ];
 
-    const lastSeenEl = document.getElementById("lastSeen");
-    const countdownEl = document.getElementById("timer");
-    const messageEl = document.getElementById("message");
-    const lyrics = document.getElementById("lyrics");
-    const confettiCanvas = document.getElementById("confetti-canvas");
-
-    let lastTriggeredMessage = -1;
-
-    function formatDiff(ms) {
-      const d = Math.floor(ms / (1000*60*60*24));
-      const h = Math.floor((ms % (1000*60*60*24)) / (1000*60*60));
-      const m = Math.floor((ms % (1000*60*60)) / (1000*60));
-      const s = Math.floor((ms % (1000*60)) / 1000);
-      return `${d}d ${h}h ${m}m ${s}s`;
-    }
-
-    function triggerConfetti() {
-      confettiCanvas.classList.remove("hidden");
-      const duration = 4 * 1000;
-      const end = Date.now() + duration;
-      (function frame() {
-        confetti.create(confettiCanvas, { resize: true, useWorker: true })({
-          particleCount: 7,
-          spread: 70,
-          origin: { y: 0.6 }
-        });
-        if (Date.now() < end) requestAnimationFrame(frame);
-        else confettiCanvas.classList.add("hidden");
-      })();
-    }
+  <script>
+    // COUNTUP
+    const lastSeen = new Date("2024-02-05T12:00:00"); // Update with actual last seen time
+    const countdownDate = new Date("2025-06-04T07:00:00"); // Update to when you’ll see her
 
     function updateTimers() {
       const now = new Date();
-      let diffSeen = now - lastSeenDate;
-      let days = Math.floor(diffSeen / (1000 * 60 * 60 * 24));
-      let hours = Math.floor((diffSeen % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      lastSeenEl.textContent = `It’s been ${days} days and ${hours} hours since I last saw you 💔`;
 
-      const diffCountdown = countdownTarget - now;
-      if (diffCountdown > 0) {
-        countdownEl.textContent = `Counting down to being with MyPinkHeart 💗 ${formatDiff(diffCountdown)} to go`;
-        messageEl.textContent = "I’ve missed your voice, your smile, your everything. Every second brings me closer 💞";
+      const diff = now - lastSeen;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      document.getElementById("lastSeen").innerText = `It’s been ${days} days and ${hours} hours since I last saw you 💔`;
+
+      const timeLeft = countdownDate - now;
+      if (timeLeft > 0) {
+        const d = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const h = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((timeLeft / (1000 * 60)) % 60);
+        const s = Math.floor((timeLeft / 1000) % 60);
+        document.getElementById("timer").innerText = `Counting down to being with MyPinkHeart 💗 ${d}d ${h}h ${m}m ${s}s to go`;
       } else {
-        const hoursPassed = Math.floor((now - messageStart) / (1000 * 60 * 60));
-        if (hoursPassed >= hourlyMessages.length) {
-          messageEl.textContent = "You’re here now, and I’m wrapped in the warmth of your love 💘";
-        } else {
-          messageEl.textContent = hourlyMessages[hoursPassed];
-          if ([2, 3, 5].includes(hoursPassed) && lastTriggeredMessage !== hoursPassed) {
-            triggerConfetti();
-            lastTriggeredMessage = hoursPassed;
-          }
-        }
+        document.getElementById("timer").innerText = `You're finally here 💞`;
       }
     }
-
     setInterval(updateTimers, 1000);
     updateTimers();
 
-    document.getElementById("playBtn").addEventListener("click", () => {
-      const song = document.getElementById("song");
+    // LYRICS
+    const lyrics = [
+      "Yours, mine, ours",
+      "I could do this for hours",
+      "Sit and talk to you for hours",
+      "I wanna give you your flowers",
+      "And some champagne showers",
+      "Order shrimp and lobster towers",
+      "But it's me that gets devoured",
+      "When you do what you do, I'm empowered",
+      "You give me a superpower",
+      "Together the world could be ours",
+      "You sit me up on the counter",
+      "Instantly, it's thunder showers",
+      "Stormin' for a couple hours",
+      "When we finished, take a shower",
+      "Usually don't like nobody",
+      "Then I met you",
+      "I knew this was it",
+      "I've never been in love like this",
+      "A love like ours",
+      "I pray for it on my knees",
+      "Every night for some hours",
+      "Makin' love to you for hours",
+      "Tellin' you jokes for hours",
+      "Holdin' you close for hours",
+      "Hours and hours",
+    ];
+
+    let lyricIndex = 0;
+    const lyricsEl = document.getElementById("lyrics");
+    function showNextLyric() {
+      lyricsEl.style.opacity = 0;
+      setTimeout(() => {
+        lyricsEl.innerText = lyrics[lyricIndex];
+        lyricsEl.style.opacity = 1;
+        lyricIndex = (lyricIndex + 1) % lyrics.length;
+      }, 1000);
+    }
+    setInterval(showNextLyric, 5000);
+    showNextLyric();
+
+    // MUSIC BUTTON
+    const playBtn = document.getElementById("playBtn");
+    const song = document.getElementById("song");
+
+    playBtn.addEventListener("click", () => {
       song.play().then(() => {
-        playBtn.innerText = "Now playing your favorite song ❤️";
+        playBtn.innerText = "Now playing 💞";
       }).catch(() => {
-        playBtn.innerText = "Tap me again, baby 😘";
+        playBtn.innerText = "Try tapping again 💗";
       });
     });
-  </script></body>
+
+    // Floating hearts
+    const heartsContainer = document.getElementById("hearts");
+    function createHeart() {
+      const heart = document.createElement("span");
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 10 + 20 + "px";
+      heart.style.animationDuration = Math.random() * 5 + 4 + "s";
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 9000);
+    }
+    setInterval(createHeart, 500);
+  </script>
+</body>
 </html>
