@@ -143,7 +143,7 @@
     <div class="countup" id="lastSeen">It’s been 115 days and 6 hours since I last saw you 💔</div>
     <img src="PICTURE.JPEG" alt="My Love" class="photo" />
     <div class="countdown" id="timer">Counting down to being with MyPinkHeart 💗 6d 0h 31m 28s to go</div>
-    <div class="message" id="message">Spur sounded tasty… movies sounded fun… but you? You’re the real treat. So I’m choosing you—an indoor picnic, just us, good food, good music, something nice to sip on and you looking all cute across from me. I want you close, stealing bites, teasing me with that smile. My pink heart, let’s make it a cozy little escape—just the way I like it. 💋</div>
+    <div class="message" id="message">Just a few hours till I see you again, and my heart’s already racing. I’ve missed your voice, your laugh, your hugs—everything. Can’t wait to hold you, tease you, and kiss that smile I’ve been thinking about for weeks. Hurry back to me, my pink heart 💖</div>
     <button class="audio-button" id="playBtn">Wanna hear a secret? Tap me 🩵🎶</button>
     <div class="lyrics" id="lyrics">I could do this for hours and hours and hours...</div>
     <div id="final" class="hidden">
@@ -195,7 +195,7 @@
       const diffCountdown = countdownTarget - now;
       if(diffCountdown > 0) {
         countdownEl.textContent = `Counting down to being with MyPinkHeart 💗 ${formatDiff(diffCountdown)} to go`;
-        messageEl.textContent = "Spur sounded tasty… movies sounded fun… but you? You’re the real treat. So I’m choosing you—an indoor picnic, just us, good food, good music, something nice to sip on and you looking all cute across from me. I want you close, stealing bites, teasing me with that smile. My pink heart, let’s make it a cozy little escape—just the way I like it. 💋";
+        // Message stays static until arrival
       } else {
         countdownEl.textContent = "0d 0h 0m 0s";
         messageEl.textContent = "You’re here now, and I’m wrapped in the warmth of your love 💘";
@@ -206,4 +206,4 @@
     setInterval(updateTimers, 1000);
   </script>
 </body>
-</html>
+  </html>
