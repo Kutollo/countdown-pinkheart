@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Countdown to You 💖</title>
@@ -144,7 +142,7 @@
     <div class="countup" id="lastSeen">It’s been 115 days and 6 hours since I last saw you 💔</div>
     <img src="PICTURE.JPEG" alt="My Love" class="photo" />
     <div class="countdown" id="timer">Counting down to being with MyPinkHeart 💗 6d 0h 31m 28s to go</div>
-    <div class="message" id="message">My pink heart 💗, you’re so close now. Just imagining you sitting at the airport with your bags, waiting to come home to me, fills me with so much warmth. Safe flight, my love. I’ll be right here counting every minute till you’re in my arms again.</div>
+    <div class="message" id="message">You’ve landed and so has my heart. 💖 Johannesburg is glowing because you’re finally here. I’ve waited so long just to see your face again. 🥺 Now every second feels like a dream unfolding. Request that Uber and come home to me — my arms are waiting for you. 🛬🚗💞</div>
     <button class="audio-button" id="playBtn">Wanna hear a secret? Tap me 🩵🎶</button>
     <div class="lyrics" id="lyrics">I could do this for hours and hours and hours...</div>
     <div id="final" class="hidden">
@@ -196,10 +194,8 @@
       const diffCountdown = countdownTarget - now;
       if(diffCountdown > 0) {
         countdownEl.textContent = `Counting down to being with MyPinkHeart 💗 ${formatDiff(diffCountdown)} to go`;
-        messageEl.textContent = "My pink heart 💗, you’re so close now. Just imagining you sitting at the airport with your bags, waiting to come home to me, fills me with so much warmth. Safe flight, my love. I’ll be right here counting every minute till you’re in my arms again.";
       } else {
         countdownEl.textContent = "0d 0h 0m 0s";
-        messageEl.textContent = "You’re here now, and I’m wrapped in the warmth of your love 💘";
       }
     }
 
