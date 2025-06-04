@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Countdown to You 💖</title>
@@ -142,7 +144,9 @@
     <div class="countup" id="lastSeen">It’s been 115 days and 6 hours since I last saw you 💔</div>
     <img src="PICTURE.JPEG" alt="My Love" class="photo" />
     <div class="countdown" id="timer">Counting down to being with MyPinkHeart 💗 6d 0h 31m 28s to go</div>
-    <div class="message" id="message">You’ve landed and so has my heart. 💖 Johannesburg is glowing because you’re finally here. I’ve waited so long just to see your face again. 🥺 Now every second feels like a dream unfolding. Request that Uber and come home to me — my arms are waiting for you. 🛬🚗💞</div>
+    <div class="message" id="message">
+      You’ve landed and so has my heart. Johannesburg just got brighter because you’re in it. I’ve waited so long to see your face again now every second feels like a dream come true. Come into my arms, where you belong. ✈️💖
+    </div>
     <button class="audio-button" id="playBtn">Wanna hear a secret? Tap me 🩵🎶</button>
     <div class="lyrics" id="lyrics">I could do this for hours and hours and hours...</div>
     <div id="final" class="hidden">
@@ -158,6 +162,11 @@
   <script>
     const playBtn = document.getElementById("playBtn");
     const song = document.getElementById("song");
+    const lastSeenEl = document.getElementById('lastSeen');
+    const countdownEl = document.getElementById('timer');
+    const messageEl = document.getElementById('message');
+    const finalContainer = document.getElementById('final');
+    const confettiCanvas = document.getElementById('confetti-canvas');
 
     playBtn.addEventListener("click", () => {
       song.play().then(() => {
@@ -166,10 +175,6 @@
         playBtn.innerText = "Tap me again, baby 😘";
       });
     });
-
-    const lastSeenEl = document.getElementById('lastSeen');
-    const countdownEl = document.getElementById('timer');
-    const messageEl = document.getElementById('message');
 
     const lastSeenDate = new Date(2025, 1, 3, 7, 0, 0); // Feb 3, 2025, 7:00 AM
     const countdownTarget = new Date(2025, 5, 4, 14, 0, 0); // June 4, 2025, 2:00 PM
@@ -180,6 +185,14 @@
       const minutes = Math.floor((ms % (1000*60*60)) / (1000*60));
       const seconds = Math.floor((ms % (1000*60)) / 1000);
       return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    function triggerConfetti() {
+      confettiCanvas.classList.remove('hidden');
+      confetti.create(confettiCanvas, {
+        resize: true,
+        useWorker: true
+      })({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
     }
 
     function updateTimers() {
@@ -195,7 +208,11 @@
       if(diffCountdown > 0) {
         countdownEl.textContent = `Counting down to being with MyPinkHeart 💗 ${formatDiff(diffCountdown)} to go`;
       } else {
-        countdownEl.textContent = "0d 0h 0m 0s";
+        countdownEl.classList.add('hidden');
+        lastSeenEl.classList.add('hidden');
+        messageEl.classList.add('hidden');
+        finalContainer.classList.remove('hidden');
+        triggerConfetti();
       }
     }
 
